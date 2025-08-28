@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 16:16:55 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/07/18 17:20:38 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/08/28 14:20:54 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst, void (*del)(void *));
 void		ft_lstclear(t_list **lst, void (*del)(void *));
 
+char		*get_next_line(int fd);
 void		*ft_free_matrix(char **arr);
 void		*ft_collect_mem(size_t nmemb, size_t size);
 void		untrack_pointer(void *content);

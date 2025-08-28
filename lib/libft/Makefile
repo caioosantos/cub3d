@@ -35,6 +35,7 @@ SRCS =	ft_atol.c \
 		ft_lstnew.c \
 		ft_free_matrix.c \
 		ft_strrchr.c \
+		get_next_line.c \
 
 
 OBJECTS = $(SRCS:.c=.o)
