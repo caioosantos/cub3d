@@ -28,7 +28,7 @@ SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
 		$(addprefix $(COR_DIR), ) \
 		$(addprefix $(INP_DIR), ) \
 		$(addprefix $(MAT_DIR), ) \
-		$(addprefix $(PAR_DIR), parse.c) \
+		$(addprefix $(PAR_DIR), parse.c parse_texture.c) \
 		$(addprefix $(REN_DIR), ) \
 		$(addprefix $(ULT_DIR), clean.c) \
 

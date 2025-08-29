@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   ft_special_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/29 15:56:29 by cbrito-s         ###   ########.fr       */
+/*   Created: 2025/08/29 16:55:57 by cbrito-s          #+#    #+#             */
+/*   Updated: 2025/08/29 16:57:17 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "libft.h"
 
-void	init(t_game *game)
+int	has_special_char(char *str)
 {
-	game->map = ft_collect_mem(1, sizeof(t_map));
-	game->player = ft_collect_mem(1, sizeof(t_player));
-	game->mlx = mlx_init(1200, 800, "Counter-Strike 3", false);
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] >= 9 && str[i] <= 13)
+			return (1);
+		i++;
+	}
+	return (0);
 }

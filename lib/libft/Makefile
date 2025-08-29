@@ -13,6 +13,8 @@ SRCS =	ft_atol.c \
 		ft_isalnum.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
+		ft_isspace.c \
+		ft_special_char.c \
 		ft_itoa.c \
 		ft_memmove.c \
 		ft_putchar_fd.c \

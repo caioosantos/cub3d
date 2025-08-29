@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/28 16:42:12 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:31:56 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,25 @@ typedef struct s_player
 	int		pos_y;
 }	t_player;
 
-typedef struct s_textute
+typedef struct s_image
 {
 	mlx_image_t		*north;
 	mlx_image_t		*south;
 	mlx_image_t		*east;
 	mlx_image_t		*west;
+}	t_image;
+
+typedef struct s_texture
+{
 	mlx_texture_t	*t_north;
 	mlx_texture_t	*t_south;
 	mlx_texture_t	*t_east;
 	mlx_texture_t	*t_west;
-}	t_textute;
+	char			*north;
+	char			*south;
+	char			*east;
+	char			*west;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -51,6 +59,8 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	mlx_t		*mlx;
+	t_image		*image;
+	t_texture	*texture;
 }	t_game;
 
 // init
@@ -58,6 +68,7 @@ void		init(t_game *game);
 
 // parse
 void		parse(t_game *game, char *file);
+int			get_texture_and_color(t_game *game, char **content, int *i);
 
 // utils
 void		destroy_game(t_game *game);

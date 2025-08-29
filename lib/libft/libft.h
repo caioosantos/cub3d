@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 16:16:55 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/28 14:20:54 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/08/29 16:57:36 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_list
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
+int			ft_isspace(int c);
+int			ft_special_char(char *str);
 int			ft_strlen(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
