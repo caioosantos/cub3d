@@ -29,6 +29,8 @@ SRCS =	ft_atol.c \
 		ft_strlcpy.c \
 		ft_strlen.c \
 		ft_strncmp.c \
+		ft_strtrim.c \
+		ft_strnstr.c \
 		ft_substr.c \
 		ft_collect_mem.c \
 		ft_lstadd_front.c \

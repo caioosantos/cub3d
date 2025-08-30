@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 16:16:55 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/29 16:57:36 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 19:14:23 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isspace(int c);
-int			ft_special_char(char *str);
 int			ft_strlen(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memmove(void *dest, const void *src, size_t n);
@@ -50,6 +49,8 @@ char		*ft_strdup(const char *s);
 
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 long		ft_atol(const char *str);

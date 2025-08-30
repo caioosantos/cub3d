@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/29 16:31:56 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/08/30 20:22:14 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ typedef struct s_texture
 	mlx_texture_t	*t_south;
 	mlx_texture_t	*t_east;
 	mlx_texture_t	*t_west;
-	char			*north;
-	char			*south;
-	char			*east;
-	char			*west;
+	char			*north_path;
+	char			*south_path;
+	char			*east_path;
+	char			*west_path;
+	int				north;
+	int				south;
+	int				east;
+	int				west;
+	int				floor;
+	int				ceiling;
 }	t_texture;
 
 typedef struct s_map
