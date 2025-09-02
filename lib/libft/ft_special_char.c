@@ -6,16 +6,18 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 16:55:57 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/29 16:57:17 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:32:36 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	has_special_char(char *str)
+int	ft_special_char(char *str)
 {
 	int	i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (str[i])
 	{

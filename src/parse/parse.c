@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:07:18 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/29 16:03:26 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:16:27 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	parse(t_game *game, char *file)
 	i = 0;
 	validate_file(game, file);
 	get_texture_and_color(game, game->map->content, &i);
-	get_map(game, file, &i);
-	validate_texture(game, game->map->content);
+	// get_map(game, file, &i);
+	// validate_texture(game, game->map->content);
 }

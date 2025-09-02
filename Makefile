@@ -28,7 +28,7 @@ SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
 		$(addprefix $(COR_DIR), ) \
 		$(addprefix $(INP_DIR), ) \
 		$(addprefix $(MAT_DIR), ) \
-		$(addprefix $(PAR_DIR), parse.c parse_texture.c) \
+		$(addprefix $(PAR_DIR), parse.c parse_texture.c parse_utils.c) \
 		$(addprefix $(REN_DIR), ) \
 		$(addprefix $(ULT_DIR), clean.c) \
 
@@ -55,6 +55,9 @@ $(MLX):
 $(NAME): $(OBJS) $(MLX)
 	@$(CC) $(CFLAGS) -no-pie $(OBJS) -L$(LIB_DIR) -lft $(MLX) -o $(NAME) $(MLX_FLAGS)
 	@printf "$(GREEN)$(NAME) compiled successfully!$(END)\n"
+
+debug: $(NAME)
+	valgrind ./$(NAME) maps/valide_maps/subject.cub
 
 libft:
 	@printf "$(YELLOW)Compiling libft...$(END)\n"

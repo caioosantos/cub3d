@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/30 20:22:14 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:36:34 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct s_texture
 	char			*south_path;
 	char			*east_path;
 	char			*west_path;
+	char			*floor_color;
+	char			*ceiling_color;
 	int				north;
 	int				south;
 	int				east;
@@ -75,6 +77,9 @@ void		init(t_game *game);
 // parse
 void		parse(t_game *game, char *file);
 int			get_texture_and_color(t_game *game, char **content, int *i);
+
+int			startwith(char *content, char *start);
+int			is_valid_line(char *content);
 
 // utils
 void		destroy_game(t_game *game);

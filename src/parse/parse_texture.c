@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:46:02 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/30 20:25:38 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/02 20:38:25 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,9 @@ static int	only_spaces(char *content)
 	while (content[i])
 	{
 		if (!ft_isspace(content[i]))
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
-}
-
-int	startwith(char *content, char *start)
-{
-	char	*trim;
-	int		len;
-
-	len = ft_strlen(start);
-	trim = ft_strtrim(content, ' ');
-	if (ft_strnstr(trim, start, len) && trim[len] == ' ')
-	{
-		untrack_pointer(trim);
-		return (0);
-	}
-	untrack_pointer(trim);
 	return (1);
 }
 
@@ -46,25 +30,46 @@ void	get_cardinals_and_color(t_game *game, char *content)
 {
 	if (startwith(content, "NO"))
 		game->texture->north++;
-	if (startwith(content, "SO"))
+	else if (startwith(content, "SO"))
 		game->texture->south++;
-	if (startwith(content, "WE"))
+	else if (startwith(content, "WE"))
 		game->texture->west++;
-	if (startwith(content, "EA"))
+	else if (startwith(content, "EA"))
 		game->texture->east++;
-	if (startwith(content, "F"))
+	else if (startwith(content, "F"))
 		game->texture->floor++;
-	if (startwith(content, "C"))
+	else if (startwith(content, "C"))
 		game->texture->ceiling++;
-	if (!is_valid_line(content))
+	else if (!is_valid_line(content))
 	{
 		printf("ERROR: caractere inesperado!\n");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
-	return (0);
 }
 
-void	get_textute(t_game *game, char *content)
+char	*get_texture_path(char *content, char *start)
+{
+	char	*path;
+	char	*trim;
+	int		len;
+
+	len = ft_strlen(start);
+	trim = ft_strtrim(content, " ");
+	while (trim[len])
+	{
+		if (trim[len] != ' ')
+		{
+			path = ft_substr(trim, len, ft_strlen(trim) - len);
+			untrack_pointer(trim);
+			return (path);
+		}
+		len++;
+	}
+	untrack_pointer(trim);
+	return (NULL);
+}
+
+int	get_textute(t_game *game, char *content)
 {
 	get_cardinals_and_color(game, content);
 	if (game->texture->north > 1 || game->texture->south > 1
@@ -79,8 +84,23 @@ void	get_textute(t_game *game, char *content)
 		exit(EXIT_FAILURE);
 	}
 	if (startwith(content, "NO"))
-		game->texture->t_north = get_texture_path(content, "NO");
-
+		game->texture->north_path = get_texture_path(content, "NO");
+	else if (startwith(content, "SO"))
+		game->texture->south_path = get_texture_path(content, "SO");
+	else if (startwith(content, "WE"))
+		game->texture->west_path = get_texture_path(content, "WE");
+	else if (startwith(content, "EA"))
+		game->texture->east_path = get_texture_path(content, "EA");
+	else if (startwith(content, "F"))
+		game->texture->floor_color = get_texture_path(content, "F");
+	else if (startwith(content, "C"))
+		game->texture->ceiling_color = get_texture_path(content, "C");
+	else if (!is_valid_line(content))
+	{
+		printf("ERROR: caractere inesperado!\n");
+		return (1);
+	}
+	return (0);
 }
 
 int	get_texture_and_color(t_game *game, char **content, int *i)
@@ -99,9 +119,27 @@ int	get_texture_and_color(t_game *game, char **content, int *i)
 			exit(EXIT_FAILURE);
 		}
 		if (only_spaces(content[*i]))
-			*i++;
+		{
+			(*i)++;
+			continue;
+		}
+		if (game->texture->north >= 1 && game->texture->south >= 1 &&
+			game->texture->west >= 1 && game->texture->east >= 1 &&
+			game->texture->floor >= 1 && game->texture->ceiling >= 1)
+			break ;
 		get_textute(game, content[*i]);
-		*i++;
+		(*i)++;
 	}
-	return (i);
+	if (!game->texture->north_path || !game->texture->south_path
+			|| !game->texture->west_path || !game->texture->east_path)
+	{
+		printf("ERROR: Textura invalida!\n");
+		exit(EXIT_FAILURE);
+	}
+	if (!game->texture->floor_color || !game->texture->ceiling_color)
+	{
+		printf("ERROR: Color invalido!\n");
+		exit(EXIT_FAILURE);
+	}
+	return (*i);
 }
