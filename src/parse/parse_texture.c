@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:46:02 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/02 20:38:25 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:07:25 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-static int	only_spaces(char *content)
+int	only_spaces(char *content)
 {
 	int	i;
 
@@ -103,7 +103,7 @@ int	get_textute(t_game *game, char *content)
 	return (0);
 }
 
-int	get_texture_and_color(t_game *game, char **content, int *i)
+void	get_texture_and_color(t_game *game, char **content, int *i)
 {
 	game->texture = ft_collect_mem(1, sizeof(t_texture));
 	if (!game->texture)
@@ -141,5 +141,27 @@ int	get_texture_and_color(t_game *game, char **content, int *i)
 		printf("ERROR: Color invalido!\n");
 		exit(EXIT_FAILURE);
 	}
-	return (*i);
+}
+
+void	validate_texture(t_game *game, char *path)
+{
+	char	*ext;
+	int		fd;
+
+	(void)game;
+	ext = ft_strrchr(path, '.');
+	if (!ext)
+		exit(EXIT_FAILURE);
+	if (ft_strncmp(ext, ".png", 4) != 0)
+	{
+		printf("ERROR: extensão invalida!\n");
+		exit(EXIT_FAILURE);
+	}
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("ERROR: caminho da textura invalido!\n");
+		exit(EXIT_FAILURE);
+	}
+	close(fd);
 }

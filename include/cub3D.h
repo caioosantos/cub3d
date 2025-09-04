@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/01 20:36:34 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:00:11 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_map
 {
 	char	**map;
 	char	**content;
+	int		height;
 }	t_map;
 
 typedef struct s_game
@@ -76,10 +77,15 @@ void		init(t_game *game);
 
 // parse
 void		parse(t_game *game, char *file);
-int			get_texture_and_color(t_game *game, char **content, int *i);
+void		get_texture_and_color(t_game *game, char **content, int *i);
+void		get_map(t_game *game, char **map, int *i);
+void		validate_texture(t_game *game, char *path);
 
 int			startwith(char *content, char *start);
 int			is_valid_line(char *content);
+int			only_spaces(char *content);
+int			contains_any_char(char *str, char *chars);
+int			count_map(t_game *game, char **map, int i);
 
 // utils
 void		destroy_game(t_game *game);

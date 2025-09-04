@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 12:07:18 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/02 15:16:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:56:38 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void	parse(t_game *game, char *file)
 	i = 0;
 	validate_file(game, file);
 	get_texture_and_color(game, game->map->content, &i);
-	// get_map(game, file, &i);
-	// validate_texture(game, game->map->content);
+	get_map(game, game->map->content, &i);
+	validate_texture(game, game->texture->north_path);
+	validate_texture(game, game->texture->south_path);
+	validate_texture(game, game->texture->west_path);
+	validate_texture(game, game->texture->east_path);
+	// validade_colors();
+	// validate_map();
 }
