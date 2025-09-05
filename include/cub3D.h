@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/03 21:00:11 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:14:01 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ int			is_valid_line(char *content);
 int			only_spaces(char *content);
 int			contains_any_char(char *str, char *chars);
 int			count_map(t_game *game, char **map, int i);
+
+void		validate_map(t_game *game, char **map);
+void		get_player(t_game *game, char **map, int i, int j);
 
 // utils
 void		destroy_game(t_game *game);

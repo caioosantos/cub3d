@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:05:36 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/03 21:06:52 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/05 19:54:37 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,56 @@ void	get_map(t_game *game, char **map, int *i)
 	game->map->height = j;
 }
 
+int	valid_zero(char **map, int i, int j)
+{
+	if (i == 0 || j == 0)
+		return (0);
+	if (!map[i - 1])
+		return (0);
+	if (!map[i + 1])
+		return (0);
+	if (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' ')
+		return (0);
+	if (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')
+		return (0);
+	if (map[i][j - 1] == ' ')
+		return (0);
+	if (!map[i][j + 1] || map[i][j + 1] == ' ')
+		return (0);
+	return (1);
+}
+
+void	validate_map(t_game *game, char **map)
+{
+	int	i;
+	int	j;
+
+	if (!map || !*map)
+	{
+		printf("ERROR: Não foi possível encontrar o mapa!\n");
+		exit(EXIT_FAILURE);
+	}
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!ft_strchr(" 01NSWE", map[i][j]))
+			{
+				printf("ERROR: %d\n", map[i][j]);
+				exit(EXIT_FAILURE);
+			}
+			if (map[i][j] == '0')
+				if (!valid_zero(map, i, j))
+				{
+					printf("ERROR: '0' em posição inválida no mapa!\n");
+					exit(EXIT_FAILURE);
+				}
+			if (ft_strchr("NSWE", map[i][j]))
+				get_player(game, map, i, j);
+			j++;
+		}
+		i++;
+	}
+}

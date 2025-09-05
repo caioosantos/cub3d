@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:46:02 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/03 21:07:25 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:18:32 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	get_textute(t_game *game, char *content)
 	else if (!is_valid_line(content))
 	{
 		printf("ERROR: caractere inesperado!\n");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
