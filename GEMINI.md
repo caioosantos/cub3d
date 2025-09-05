@@ -74,7 +74,7 @@ The MLX library is essential for rendering the game world.
 2.  **Player Movement:**
 
       * Set up a loop hook using `mlx_loop_hook` to capture player input.
-      * Implement functions to handle player movement (forward/backward) and rotation (left/right) by modifying the `t_player`'s `pos`, `dir`, and `camera_plane` vectors.
+      * Implement functions to handle player movement (forward/backward) and rotation (left/right) by modifying the `t_player`'s `pos`, `dir`, and `plane` vectors.
 
 3.  **Raycasting Engine (following `render.c`):**
 

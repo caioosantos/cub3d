@@ -19,8 +19,8 @@ Implementation Idea:
 
 2. Set the Ray Direction: The ray's direction is the sum of the player's direction vector and the camera plane vector, scaled
 	by the camera_pixel.x.
-	* game->ray->dir.x = game->player->dir->x + game->player->camera_plane->x * game->ray->camera_pixel.x;
-	* game->ray->dir.y = game->player->dir->y + game->player->camera_plane->y * game->ray->camera_pixel.x;
+	* game->ray->dir.x = game->player->dir->x + game->player->plane->x * game->ray->camera_pixel.x;
+	* game->ray->dir.y = game->player->dir->y + game->player->plane->y * game->ray->camera_pixel.x;
 
 3. Calculate Delta Distances: These values represent how far the ray must travel to cross one unit of the map grid in the x or
 	y direction. It's the inverse of the direction vector.

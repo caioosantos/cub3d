@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:20:44 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/28 17:50:39 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/05 17:00:29 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		return (0);
 	init(game);
 	parse(game, av[1]);
-	mlx_loop_hook(game->mlx, &generate_frame, game);
+	render(game);
 	mlx_loop(game->mlx);
 	if (game->mlx)
 		destroy_game(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/04 00:49:38 by codespace        ###   ########.fr       */
+/*   Updated: 2025/09/05 19:35:18 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 # define WIDTH 720
 # define HEIGHT 480
 
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
-
 typedef struct s_vector
 {
 	float	x;
@@ -38,12 +32,12 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	t_vector	camera_pixel;
-	t_vector	dir;
-	t_point		map_pos;
-	t_point		step;
-	t_vector	delta_dist;
-	t_vector	side_dist;
+	t_vector	*camera_pixel;
+	t_vector	*dir;
+	t_vector	*map_pos;
+	t_vector	*step;
+	t_vector	*delta_dist; // Dist between two x sides or two y sides
+	t_vector	*side_dist; // Dist between next x or y side
 	float		p_dist;
 	int			hit_side;
 	int			line_height;
@@ -54,9 +48,10 @@ typedef struct s_ray
 typedef struct s_player
 {
 	char		start;
-	t_point		*pos;
+	t_vector	*pos;
 	t_vector	*dir;
-	t_vector	*camera_plane;
+	t_vector	*plane;
+	float		plane_multi;
 }	t_player;
 
 typedef struct s_textute
@@ -93,7 +88,38 @@ void		init(t_game *game);
 void		parse(t_game *game, char *file);
 
 // render
-void		generate_frame(void *param);
+void		render(t_game *game);
+
+// math
+/*
+ * Scalar multiplication of a vector involves multiplying each component
+ * of the vector by a scalar (a real number). This scales the vector's
+ * magnitude and reverses its direction if the scalar is negative.
+ *
+ * @param v Pointer to the vector to be multiplied.
+ * @param multi Scalar value to multiply the vector by.
+ * @return Pointer to a new vector containing the result.
+ */
+t_vector    *multiply_vector(t_vector *v, float multi);
+
+/**
+ * Calculates the sum of two integers.
+ *
+ * @param a The first integer to add.
+ * @param b The second integer to add.
+ * @return The sum of a and b.
+ */
+t_vector    *sum_vectors(t_vector *va, t_vector *vb);
+
+/**
+ * @brief Calculates the magnitude (length) of a given vector.
+ *
+ * This function computes the Euclidean norm of the vector pointed to by `vector`.
+ *
+ * @param vector Pointer to a t_vector structure representing the vector.
+ * @return The magnitude (float) of the vector.
+ */
+float	  vector_magnitude(t_vector *v);
 
 // utils
 void		destroy_game(t_game *game);

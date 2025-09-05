@@ -27,7 +27,7 @@ ULT_DIR = src/utils/
 SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
 		$(addprefix $(COR_DIR), ) \
 		$(addprefix $(INP_DIR), ) \
-		$(addprefix $(MAT_DIR), ) \
+		$(addprefix $(MAT_DIR), vectors.c) \
 		$(addprefix $(PAR_DIR), parse.c) \
 		$(addprefix $(REN_DIR), render.c) \
 		$(addprefix $(ULT_DIR), clean.c) \

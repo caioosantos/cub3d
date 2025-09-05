@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/04 00:21:37 by codespace        ###   ########.fr       */
+/*   Updated: 2025/09/05 18:21:58 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	init_data(t_game *game)
+void	init_player(t_player *player)
 {
-	game->player->dir->x = 0;
-	game->player->dir->y = -1;
-	game->player->camera_plane->x = 0.66;
-	game->player->camera_plane->y = 0;
+	// TODO: Pegar posição do jogador a partir do mapa [player->pos]
+	// TODO: Pegar direção do jogador a partir do mapa [player->dir]
+	player->dir = ft_collect_mem(1, sizeof(t_vector));
+	player->plane = ft_collect_mem(1, sizeof(t_vector));
+	player->pos = ft_collect_mem(1, sizeof(t_vector));
+	player->pos->x = 5;
+	player->pos->y = 5;
+	player->dir->x = 0;
+	player->dir->y = -1;
+	player->plane->x = 0.66;
+	player->plane->y = 0;
 }
 
 void	init(t_game *game)
@@ -26,7 +33,5 @@ void	init(t_game *game)
 	game->player = ft_collect_mem(1, sizeof(t_player));
 	game->ray = ft_collect_mem(1, sizeof(t_ray));
 	game->mlx = mlx_init(WIDTH, HEIGHT, "Counter-Strike 3", false);
-	init_data(game);
-	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	init_player(game->player);
 }

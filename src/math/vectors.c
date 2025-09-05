@@ -14,15 +14,30 @@
 
 t_vector    *multiply_vector(t_vector *v, float multi)
 {
+	t_vector    *res;
 
+	res = ft_collect_mem(1, sizeof(t_vector));
+	res->x = v->x * multi;
+	res->y = v->y * multi;
+	return (res);
 }
 
 t_vector    *sum_vectors(t_vector *va, t_vector *vb)
 {
+	t_vector    *res;
 
+	res = ft_collect_mem(1, sizeof(t_vector));
+	res->x = va->x + vb->x;
+	res->y = va->y + vb->y;
+	return (res);
 }
 
 t_vector    *rotate_vector(t_vector *vector, int degree)
 {
 
+}
+
+float	  vector_magnitude(t_vector *v)
+{
+	return (sqrt((v->x * v->x) + (v->y * v->y)));
 }
