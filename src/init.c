@@ -24,6 +24,9 @@ void	init(t_game *game)
 {
 	game->map = ft_collect_mem(1, sizeof(t_map));
 	game->player = ft_collect_mem(1, sizeof(t_player));
+	game->ray = ft_collect_mem(1, sizeof(t_ray));
 	game->mlx = mlx_init(WIDTH, HEIGHT, "Counter-Strike 3", false);
 	init_data(game);
+	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

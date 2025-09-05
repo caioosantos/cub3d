@@ -38,19 +38,17 @@ typedef struct s_vector
 
 typedef struct s_ray
 {
-	int			multiplier;
 	t_vector	camera_pixel;
 	t_vector	dir;
-	float		delta_x;
-	float		delta_y;
-	float		dist_x;
-	float		dist_y;
-	int			step_x;
-	int			step_y;
-	t_vector	map_pos;
-	int			hit_side;
-	int			wall_hit_map_pos;
+	t_point		map_pos;
+	t_point		step;
+	t_vector	delta_dist;
+	t_vector	side_dist;
 	float		p_dist;
+	int			hit_side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
 }	t_ray;
 
 typedef struct s_player
@@ -85,6 +83,7 @@ typedef struct s_game
 	t_player	*player;
 	mlx_t		*mlx;
 	t_ray		*ray;
+	mlx_image_t	*img;
 }	t_game;
 
 // init
@@ -92,6 +91,9 @@ void		init(t_game *game);
 
 // parse
 void		parse(t_game *game, char *file);
+
+// render
+void		generate_frame(void *param);
 
 // utils
 void		destroy_game(t_game *game);

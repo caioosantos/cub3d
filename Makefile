@@ -29,7 +29,7 @@ SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
 		$(addprefix $(INP_DIR), ) \
 		$(addprefix $(MAT_DIR), ) \
 		$(addprefix $(PAR_DIR), parse.c) \
-		$(addprefix $(REN_DIR), ) \
+		$(addprefix $(REN_DIR), render.c) \
 		$(addprefix $(ULT_DIR), clean.c) \
 
 OBJS = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)

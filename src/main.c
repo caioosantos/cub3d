@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		return (0);
 	init(game);
 	parse(game, av[1]);
-	render(game);
+	mlx_loop_hook(game->mlx, &generate_frame, game);
 	mlx_loop(game->mlx);
 	if (game->mlx)
 		destroy_game(game);
