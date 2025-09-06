@@ -3,5 +3,14 @@
 		"cub3d.h": "c",
 		"ranges": "c"
 	},
-	"cmake.ignoreCMakeListsMissing": true
+	"cmake.ignoreCMakeListsMissing": true,
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/gkana/42/milestone-4/cub3d",
+			"binaryPath": "/home/gkana/42/milestone-4/cub3d/cub3D",
+			"binaryArgs": [
+				"./maps/valide_maps/simple_map.cub"
+			]
+		}
+	]
 }

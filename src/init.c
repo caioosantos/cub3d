@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/05 22:59:01 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 10:49:14 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	init_player(t_player *player)
 	player->dir = ft_collect_mem(1, sizeof(t_vector));
 	player->plane = ft_collect_mem(1, sizeof(t_vector));
 	player->pos = ft_collect_mem(1, sizeof(t_vector));
-	player->pos->x = 5;
-	player->pos->y = 5;
-	player->dir->x = 0;
-	player->dir->y = -1;
+	player->pos->x = 6;
+	player->pos->y = 7;
+	player->dir->x = -0.5;
+	player->dir->y = 0;
 	player->plane->x = 0.66;
 	player->plane->y = 0;
 }

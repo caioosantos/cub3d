@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/05 23:20:05 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 10:29:39 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void	calculate_height(t_game *game)
 
 	perp_wall_dist = 0;
 	if(game->ray->hit_side == 0)
-		perp_wall_dist = fabs(game->ray->map_pos->x - game->player->pos->x + ((1 - game->ray->step->x) / 2)) / game->ray->dir->x;
+		perp_wall_dist = (game->ray->wall_map_pos->x - game->player->pos->x + ((1 - game->ray->step->x) / 2)) / game->ray->dir->x;
 	else
-		perp_wall_dist = fabs(game->ray->map_pos->y - game->player->pos->y + ((1 - game->ray->step->y) / 2)) / game->ray->dir->y;
+		perp_wall_dist = (game->ray->wall_map_pos->y - game->player->pos->y + ((1 - game->ray->step->y) / 2)) / game->ray->dir->y;
 	game->ray->line_height = HEIGHT / perp_wall_dist;
 	game->ray->draw_start = HEIGHT / 2 - game->ray->line_height / 2;
 	game->ray->draw_end = HEIGHT / 2 + game->ray->line_height / 2;
@@ -48,27 +48,26 @@ static void	dda_exec(t_game *game)
 	bool		hit;
 	float		dda_size_x;
 	float		dda_size_y;
-	t_vector	*wall_map_pos;
 
 	dda_size_x = game->ray->side_dist->x;
 	dda_size_y = game->ray->side_dist->y;
 	hit = false;
-	wall_map_pos = copy_vector(game->ray->map_pos);
+	game->ray->wall_map_pos = copy_vector(game->ray->map_pos);
 	while (hit == false)
 	{
 		if (dda_size_x < dda_size_y)
 		{
-			wall_map_pos->x += game->ray->step->x;
+			game->ray->wall_map_pos->x += game->ray->step->x;
 			dda_size_x += game->ray->delta_dist->x;
 			game->ray->hit_side = 0;
 		}
 		else
 		{
-			wall_map_pos->y += game->ray->step->y;
+			game->ray->wall_map_pos->y += game->ray->step->y;
 			dda_size_y += game->ray->delta_dist->y;
 			game->ray->hit_side = 1;
 		}
-		if (game->map->content[(int)wall_map_pos->y][(int)wall_map_pos->x] > '0')
+		if (game->map->content[(int)game->ray->wall_map_pos->y][(int)game->ray->wall_map_pos->x] > '0')
 			hit = true;
 	}
 }
@@ -79,21 +78,13 @@ static void	dda_setup(t_game *game, t_ray *ray)
 	ray->side_dist = ft_collect_mem(1, sizeof(t_vector));
 	ray->step = ft_collect_mem(1, sizeof(t_vector));
 	if (ray->dir->x == 0)
-	{
-		ray->delta_dist->x = 42;
-		ray->delta_dist->y = 0;
-	}
+		ray->delta_dist->x = 1e30;
 	else
-		if (ray->dir->y != 0)
-			ray->delta_dist->x = fabs(1 / ray->dir->x);
+		ray->delta_dist->x = fabs(1 / ray->dir->x);
 	if (ray->dir->y == 0)
-	{
-		ray->delta_dist->x = 0;
-		ray->delta_dist->y = 42;
-	}
+		ray->delta_dist->y = 1e30;
 	else
-		if (ray->dir->x != 0)
-			ray->delta_dist->y = fabs(1 / ray->dir->y);
+		ray->delta_dist->y = fabs(1 / ray->dir->y);
 	if (ray->dir->x < 0)
 	{
 		ray->side_dist->x = (game->player->pos->x - ray->map_pos->x) * ray->delta_dist->x;
@@ -120,7 +111,7 @@ static void	dda_setup(t_game *game, t_ray *ray)
 static void	ray_setup(t_game *game, int i, t_ray *ray)
 {
 	ray->map_pos = ft_collect_mem(1, sizeof(t_vector));
-	game->player->plane_multi = 2 * (i / WIDTH) - 1;
+	game->player->plane_multi = 2 * ((float)i / (float)WIDTH) - 1;
 	ray->camera_pixel = multiply_vector(game->player->plane, game->player->plane_multi);
 	ray->dir = sum_vectors(game->player->dir, ray->camera_pixel);
 	ray->map_pos->x = floor(game->player->pos->x);

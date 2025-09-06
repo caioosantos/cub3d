@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/05 21:30:44 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 10:34:53 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_ray
 	t_vector	*step;
 	t_vector	*delta_dist; // Dist between two x sides or two y sides
 	t_vector	*side_dist; // Dist between next x or y side
+	t_vector	*wall_map_pos;
 	float		p_dist;
 	int			hit_side;
 	int			line_height;
@@ -54,7 +55,7 @@ typedef struct s_player
 	float		plane_multi;
 }	t_player;
 
-typedef struct s_textute
+typedef struct s_texture
 {
 	mlx_image_t		*north;
 	mlx_image_t		*south;
@@ -64,7 +65,7 @@ typedef struct s_textute
 	mlx_texture_t	*t_south;
 	mlx_texture_t	*t_east;
 	mlx_texture_t	*t_west;
-}	t_textute;
+}	t_texture;
 
 typedef struct s_map
 {
