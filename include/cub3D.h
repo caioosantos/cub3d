@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/05 19:35:18 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/05 21:30:44 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,21 @@ t_vector    *sum_vectors(t_vector *va, t_vector *vb);
  *
  * This function computes the Euclidean norm of the vector pointed to by `vector`.
  *
- * @param vector Pointer to a t_vector structure representing the vector.
+ * @param v Pointer to a t_vector structure representing the vector.
  * @return The magnitude (float) of the vector.
  */
 float	  vector_magnitude(t_vector *v);
+
+/**
+ * @brief Creates a copy of the given vector.
+ *
+ * Allocates memory for a new t_vector and copies the contents of the input vector `v`
+ * into the newly allocated vector. The caller is responsible for freeing the returned vector.
+ *
+ * @param v Pointer to the t_vector to be copied.
+ * @return Pointer to the newly allocated copy of the vector, or NULL if allocation fails.
+ */
+t_vector	*copy_vector(t_vector *v);
 
 // utils
 void		destroy_game(t_game *game);

@@ -32,12 +32,22 @@ t_vector    *sum_vectors(t_vector *va, t_vector *vb)
 	return (res);
 }
 
-t_vector    *rotate_vector(t_vector *vector, int degree)
-{
+// t_vector    *rotate_vector(t_vector *vector, int degree)
+// {
 
-}
+// }
 
 float	  vector_magnitude(t_vector *v)
 {
 	return (sqrt((v->x * v->x) + (v->y * v->y)));
+}
+
+t_vector	*copy_vector(t_vector *v)
+{
+	t_vector	*res;
+
+	res = ft_collect_mem(1, sizeof(t_vector));
+	res->x = v->x;
+	res->y = v->y;
+	return (res);
 }

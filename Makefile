@@ -81,6 +81,6 @@ valg:
 	@valgrind --leak-check=full \
 			--show-leak-kinds=all \
 			--suppressions=suppress_mlx_error.supp \
-			./$(NAME)
+			./$(NAME) maps/valide_maps/simple_map.cub
 
 .PHONY: all clean fclean valg re
