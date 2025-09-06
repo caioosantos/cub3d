@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 12:22:26 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:22:33 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init(t_game *game)
 	game->player = ft_collect_mem(1, sizeof(t_player));
 	game->ray = ft_collect_mem(1, sizeof(t_ray));
 	game->mlx = mlx_init(WIDTH, HEIGHT, "Counter-Strike 3", false);
-	init_player(game->player);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	mlx_loop_hook(game->mlx, &input_hook, game);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	init_player(game->player);
 }

@@ -16,6 +16,8 @@ void	destroy_game(t_game *game)
 {
 	if (!game)
 		return ;
+	if (game->img)
+		mlx_delete_image(game->mlx, game->img);
 	if (game->mlx)
 		mlx_terminate(game->mlx);
 	ft_clear_mem();

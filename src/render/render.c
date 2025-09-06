@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/06 12:16:38 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:13:42 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ static void	raycasting(t_game *game)
 	i = 0;
 	while (i < WIDTH)
 	{
-		game->ray = ft_collect_mem(1, sizeof(t_ray));
 		ray_setup(game, i, game->ray);
 		dda_setup(game, game->ray);
 		dda_exec(game);
@@ -136,18 +135,43 @@ static void	raycasting(t_game *game)
 	}
 }
 
-void	render(t_game *game)
+static void	draw_background(t_game *game)
 {
-	for (int i = 0; i < 10; i++)
+	int			x;
+	int			y;
+	uint32_t	ceiling_color;
+	uint32_t	floor_color;
+
+	ceiling_color = 0x87CEEBFF;
+	floor_color = 0x696969FF;
+	y = 0;
+	while (y < HEIGHT / 2)
 	{
-		for (int j = 0; j < 10; j++)
+		x = 0;
+		while (x < WIDTH)
 		{
-			printf("%c", game->map->content[i][j]);
+			mlx_put_pixel(game->img, x, y, ceiling_color);
+			x++;
 		}
-		printf("\n");
+		y++;
 	}
-	// TODO background(game);
-	check_input(game);
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			mlx_put_pixel(game->img, x, y, floor_color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	render(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	draw_background(game);
 	raycasting(game);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

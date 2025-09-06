@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 12:21:03 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:10:27 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		input_hook(void *param);
 void		check_input(t_game *game);
 
 // render
-void		render(t_game *game);
+void		render(void *param);
 
 // math
 /*

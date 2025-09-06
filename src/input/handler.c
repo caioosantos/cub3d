@@ -6,50 +6,56 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/06 12:42:48 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 13:14:33 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	walk_up(t_game *game)
+static void	update_player_position(t_game *game)
 {
-	game->player->velocity->x = game->player->dir->x;
-	game->player->velocity->y = game->player->dir->y;
-	game->player->velocity = multiply_vector(game->player->velocity, game->player->move_speed);
+	t_vector	move_step;
+	t_vector	new_pos;
+
+	move_step.x = game->player->velocity->x * game->mlx->delta_time;
+	move_step.y = game->player->velocity->y * game->mlx->delta_time;
+	new_pos.x = game->player->pos->x + move_step.x;
+	new_pos.y = game->player->pos->y + move_step.y;
+	game->player->pos->x = new_pos.x;
+	game->player->pos->y = new_pos.y;
 }
 
-void	walk_down(t_game *game)
+static void	calculate_velocity(t_game *game)
 {
-	game->player->velocity->x = game->player->dir->x;
-	game->player->velocity->y = game->player->dir->y;
-	game->player->velocity = multiply_vector(game->player->velocity, -game->player->move_speed);
-}
-
-void	stop_walking(t_game *game)
-{
-	multiply_vector(game->player->velocity, 0.0);
-}
-
-void	update_input(t_game *game)
-{
-	t_vector *new_pos;
-
-	new_pos = multiply_vector(game->player->velocity, game->mlx->delta_time);
-	game->player->pos->x += new_pos->x;
-	game->player->pos->y += new_pos->y;
-	free(new_pos);
-}
-
-void	check_input(t_game *game)
-{
+	game->player->velocity->x = 0;
+	game->player->velocity->y = 0;
 	if (game->player->input->up)
-		walk_up(game);
-	else if (game->player->input->down)
-		walk_down(game);
-	else
-		stop_walking(game);
-	update_input(game);
+	{
+		printf("Going up\n");
+		game->player->velocity->x += game->player->dir->x
+			* game->player->move_speed;
+		game->player->velocity->y += game->player->dir->y
+			* game->player->move_speed;
+	}
+	if (game->player->input->down)
+	{
+		printf("Going down\n");
+		game->player->velocity->x -= game->player->dir->x
+			* game->player->move_speed;
+		game->player->velocity->y -= game->player->dir->y
+			* game->player->move_speed;
+	}
+}
+
+static void	reset_inputs(t_input *input)
+{
+	input->up = false;
+	input->down = false;
+	input->left = false;
+	input->right = false;
+	input->turn_left = false;
+	input->turn_right = false;
+	input->shoot = false;
 }
 
 void	input_hook(void *param)
@@ -59,6 +65,7 @@ void	input_hook(void *param)
 
 	game = (t_game *)param;
 	input = game->player->input;
+	reset_inputs(input);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		input->up = true;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
@@ -73,5 +80,6 @@ void	input_hook(void *param)
 		input->turn_right = true;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 		input->shoot = true;
-	check_input(game);
+	calculate_velocity(game);
+	update_player_position(game);
 }
