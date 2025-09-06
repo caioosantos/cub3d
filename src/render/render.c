@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/06 10:29:39 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:16:38 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ static void	raycasting(t_game *game)
 		calculate_height(game);
 		draw_line(game, i);
 		i++;
+		// TODO free_ray()
 	}
 }
 
@@ -146,6 +147,7 @@ void	render(t_game *game)
 		printf("\n");
 	}
 	// TODO background(game);
+	check_input(game);
 	raycasting(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

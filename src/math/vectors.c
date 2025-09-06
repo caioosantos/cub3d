@@ -32,10 +32,14 @@ t_vector    *sum_vectors(t_vector *va, t_vector *vb)
 	return (res);
 }
 
-// t_vector    *rotate_vector(t_vector *vector, int degree)
-// {
+void	rotate_vector(t_vector *v, float rad)
+{
+	float		old_x;
 
-// }
+	old_x = v->x;
+	v->x = v->x * cos(rad) - v->y * sin(rad);
+	v->y = old_x * sin(rad) + v->y * cos(rad);
+}
 
 float	  vector_magnitude(t_vector *v)
 {

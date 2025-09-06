@@ -1,7 +1,8 @@
 {
 	"files.associations": {
 		"cub3d.h": "c",
-		"ranges": "c"
+		"ranges": "c",
+		"cmath": "c"
 	},
 	"cmake.ignoreCMakeListsMissing": true,
 	"makefile.launchConfigurations": [

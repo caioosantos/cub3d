@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 10:34:53 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/06 12:21:03 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,18 @@ typedef struct s_ray
 	int			draw_end;
 }	t_ray;
 
+typedef struct s_input
+{
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+	bool	turn_left;
+	bool	turn_right;
+	bool	shoot;
+}	t_input;
+
+
 typedef struct s_player
 {
 	char		start;
@@ -53,6 +65,9 @@ typedef struct s_player
 	t_vector	*dir;
 	t_vector	*plane;
 	float		plane_multi;
+	t_input		*input;
+	float		move_speed;
+	t_vector	*velocity;
 }	t_player;
 
 typedef struct s_texture
@@ -87,6 +102,10 @@ void		init(t_game *game);
 
 // parse
 void		parse(t_game *game, char *file);
+
+// input
+void		input_hook(void *param);
+void		check_input(t_game *game);
 
 // render
 void		render(t_game *game);
@@ -132,6 +151,14 @@ float	  vector_magnitude(t_vector *v);
  * @return Pointer to the newly allocated copy of the vector, or NULL if allocation fails.
  */
 t_vector	*copy_vector(t_vector *v);
+
+/**
+ * Rotates a 2D vector by a given angle in radians.
+ *
+ * @param v   Pointer to the vector to be rotated. The vector is modified in place.
+ * @param rad Angle in radians by which to rotate the vector.
+ */
+void		rotate_vector(t_vector *v, float rad);
 
 // utils
 void		destroy_game(t_game *game);
