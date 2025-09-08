@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/05 17:14:01 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/08 17:38:16 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 typedef struct s_player
 {
 	char	start;
-	int		pos_x;
-	int		pos_y;
+	int		player;
+	double		pos_x;
+	double		pos_y;
 }	t_player;
 
 typedef struct s_image
@@ -87,8 +88,10 @@ int			only_spaces(char *content);
 int			contains_any_char(char *str, char *chars);
 int			count_map(t_game *game, char **map, int i);
 
+void		validade_colors(t_game *game);
 void		validate_map(t_game *game, char **map);
 void		get_player(t_game *game, char **map, int i, int j);
+void		validate_player(t_game *game);
 
 // utils
 void		destroy_game(t_game *game);
