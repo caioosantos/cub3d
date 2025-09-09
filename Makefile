@@ -28,7 +28,7 @@ SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
 		$(addprefix $(COR_DIR), ) \
 		$(addprefix $(INP_DIR), ) \
 		$(addprefix $(MAT_DIR), ) \
-		$(addprefix $(PAR_DIR), parse.c parse_colors.c parse_texture.c parse_map.c parse_player.c parse_utils.c) \
+		$(addprefix $(PAR_DIR), parse.c parse_colors.c parse_texture.c parse_map.c parse_player.c parse_utils.c set_start_position.c) \
 		$(addprefix $(REN_DIR), ) \
 		$(addprefix $(ULT_DIR), clean.c) \
 

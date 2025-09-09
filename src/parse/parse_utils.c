@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:35:17 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/03 20:09:51 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:11:27 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+int	only_spaces(char *content)
+{
+	int	i;
+
+	i = 0;
+	while (content[i])
+	{
+		if (!ft_isspace(content[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	startwith(char *content, char *start)
 {

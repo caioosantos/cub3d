@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/08 17:38:16 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:03:25 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@
 # include <fcntl.h>
 # include <math.h>
 
+typedef struct s_vector
+{
+	float	x;
+	float	y;
+}	t_vector;
+
 typedef struct s_player
 {
-	char	start;
-	int		player;
-	double		pos_x;
-	double		pos_y;
+	char		start;
+	int			player;
+	t_vector	*pos_player;
+	t_vector	*dir_player;
+	t_vector	*cam_player;
 }	t_player;
 
 typedef struct s_image
@@ -92,6 +99,8 @@ void		validade_colors(t_game *game);
 void		validate_map(t_game *game, char **map);
 void		get_player(t_game *game, char **map, int i, int j);
 void		validate_player(t_game *game);
+
+void		set_start_position(t_player *player, char pos);
 
 // utils
 void		destroy_game(t_game *game);

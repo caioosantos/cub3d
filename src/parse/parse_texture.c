@@ -6,25 +6,11 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 15:46:02 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/05 17:18:32 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/09 15:11:16 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-int	only_spaces(char *content)
-{
-	int	i;
-
-	i = 0;
-	while (content[i])
-	{
-		if (!ft_isspace(content[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 void	get_cardinals_and_color(t_game *game, char *content)
 {

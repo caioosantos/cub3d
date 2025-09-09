@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 17:08:12 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/08 17:47:11 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/09 17:05:22 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ static int	check_player(char **map, int i, int j)
 
 void	get_player(t_game *game, char **map, int i, int j)
 {
-	(void)game;
 	if (!check_player(map, i, j))
 	{
 		printf("ERROR: posição do player inválido ou não encontrado!\n");
 		exit(EXIT_FAILURE);
 	}
-	game->player->pos_x = i;
-	game->player->pos_y = j;
+	game->player->start = map[i][j];
+	game->player->pos_player->x = i;
+	game->player->pos_player->y = j;
 	game->player->player++;
+	set_start_position(game->player, map[i][j]);
 }
 
 void	validate_player(t_game *game)
