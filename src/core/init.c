@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 13:22:33 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/09 21:18:19 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_player(t_player *player)
 	player->move_speed = 5;
 	player->velocity->x = 0;
 	player->velocity->y = 0;
+	player->rot_speed = 0;
 }
 
 void	init(t_game *game)

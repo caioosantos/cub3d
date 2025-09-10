@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/06 13:14:33 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/09 21:33:30 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,11 @@
 static void	update_player_position(t_game *game)
 {
 	t_vector	move_step;
-	t_vector	new_pos;
 
 	move_step.x = game->player->velocity->x * game->mlx->delta_time;
 	move_step.y = game->player->velocity->y * game->mlx->delta_time;
-	new_pos.x = game->player->pos->x + move_step.x;
-	new_pos.y = game->player->pos->y + move_step.y;
-	game->player->pos->x = new_pos.x;
-	game->player->pos->y = new_pos.y;
+	game->player->pos->x += move_step.x;
+	game->player->pos->y += move_step.y;
 }
 
 static void	calculate_velocity(t_game *game)
@@ -45,6 +42,27 @@ static void	calculate_velocity(t_game *game)
 		game->player->velocity->y -= game->player->dir->y
 			* game->player->move_speed;
 	}
+}
+
+void	rotate_left(t_game *game)
+{
+	game->player->rot_speed = M_PI * -1;
+}
+
+void	rotate_right(t_game *game)
+{
+	game->player->rot_speed = M_PI;
+}
+
+void	calculate_rotation(t_game *game)
+{
+	if (game->player->input->turn_left)
+		rotate_left(game);
+	if (game->player->input->turn_right)
+		rotate_right(game);
+	rotate_vector(game->player->dir, game->player->rot_speed * game->mlx->delta_time);
+	rotate_vector(game->player->plane, game->player->rot_speed * game->mlx->delta_time);
+	game->player->rot_speed = 0;
 }
 
 static void	reset_inputs(t_input *input)
@@ -81,5 +99,6 @@ void	input_hook(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 		input->shoot = true;
 	calculate_velocity(game);
+	calculate_rotation(game);
 	update_player_position(game);
 }

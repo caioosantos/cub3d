@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 13:10:27 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/09 21:16:40 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define WIDTH 720
 # define HEIGHT 480
+# define M_PI 3.14159265358979323846
 
 typedef struct s_vector
 {
@@ -68,6 +69,7 @@ typedef struct s_player
 	t_input		*input;
 	float		move_speed;
 	t_vector	*velocity;
+	float		rot_speed;
 }	t_player;
 
 typedef struct s_texture
