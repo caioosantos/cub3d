@@ -24,12 +24,12 @@ PAR_DIR = src/parse/
 REN_DIR = src/render/
 ULT_DIR = src/utils/
 
-SRC =	$(addprefix $(SRC_DIR), main.c init.c) \
-		$(addprefix $(COR_DIR), ) \
-		$(addprefix $(INP_DIR), ) \
-		$(addprefix $(MAT_DIR), ) \
+SRC =	$(addprefix $(SRC_DIR), main.c) \
+		$(addprefix $(COR_DIR), init.c) \
+		$(addprefix $(INP_DIR), handler.c) \
+		$(addprefix $(MAT_DIR), vectors.c) \
 		$(addprefix $(PAR_DIR), parse.c parse_colors.c parse_texture.c parse_map.c parse_player.c parse_utils.c set_start_position.c) \
-		$(addprefix $(REN_DIR), ) \
+		$(addprefix $(REN_DIR), render.c) \
 		$(addprefix $(ULT_DIR), clean.c) \
 
 OBJS = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
@@ -84,6 +84,6 @@ valg:
 	@valgrind --leak-check=full \
 			--show-leak-kinds=all \
 			--suppressions=suppress_mlx_error.supp \
-			./$(NAME)
+			./$(NAME) maps/valide_maps/simple_map.cub
 
 .PHONY: all clean fclean valg re

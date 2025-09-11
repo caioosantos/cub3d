@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 17:08:12 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/09 17:05:22 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:53:26 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	get_player(t_game *game, char **map, int i, int j)
 		exit(EXIT_FAILURE);
 	}
 	game->player->start = map[i][j];
-	game->player->pos_player->x = i;
-	game->player->pos_player->y = j;
+	game->player->pos->x = i;
+	game->player->pos->y = j;
 	game->player->player++;
 	set_start_position(game->player, map[i][j]);
 }

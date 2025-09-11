@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/09 17:03:25 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:46:04 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,56 @@
 # include <fcntl.h>
 # include <math.h>
 
+# define WIDTH 720
+# define HEIGHT 480
+# define M_PI 3.14159265358979323846
+
 typedef struct s_vector
 {
 	float	x;
 	float	y;
 }	t_vector;
 
+typedef struct s_ray
+{
+	t_vector	*camera_pixel;
+	t_vector	*dir;
+	t_vector	*map_pos;
+	t_vector	*step;
+	t_vector	*delta_dist; // Dist between two x sides or two y sides
+	t_vector	*side_dist; // Dist between next x or y side
+	t_vector	*wall_map_pos;
+	float		p_dist;
+	int			hit_side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}	t_ray;
+
+typedef struct s_input
+{
+	bool	up;
+	bool	down;
+	bool	left;
+	bool	right;
+	bool	turn_left;
+	bool	turn_right;
+	bool	shoot;
+}	t_input;
+
+
 typedef struct s_player
 {
 	char		start;
+	t_vector	*pos;
+	t_vector	*dir;
+	t_vector	*plane;
+	float		plane_multi;
+	t_input		*input;
+	float		move_speed;
+	t_vector	*velocity;
+	float		rot_speed;
 	int			player;
-	t_vector	*pos_player;
-	t_vector	*dir_player;
-	t_vector	*cam_player;
 }	t_player;
 
 typedef struct s_image
@@ -78,6 +115,8 @@ typedef struct s_game
 	mlx_t		*mlx;
 	t_image		*image;
 	t_texture	*texture;
+	t_ray		*ray;
+	mlx_image_t	*img;
 }	t_game;
 
 // init
@@ -101,6 +140,63 @@ void		get_player(t_game *game, char **map, int i, int j);
 void		validate_player(t_game *game);
 
 void		set_start_position(t_player *player, char pos);
+
+// input
+void		input_hook(void *param);
+void		check_input(t_game *game);
+
+// render
+void		render(void *param);
+
+// math
+/*
+ * Scalar multiplication of a vector involves multiplying each component
+ * of the vector by a scalar (a real number). This scales the vector's
+ * magnitude and reverses its direction if the scalar is negative.
+ *
+ * @param v Pointer to the vector to be multiplied.
+ * @param multi Scalar value to multiply the vector by.
+ * @return Pointer to a new vector containing the result.
+ */
+t_vector    *multiply_vector(t_vector *v, float multi);
+
+/**
+ * Calculates the sum of two integers.
+ *
+ * @param a The first integer to add.
+ * @param b The second integer to add.
+ * @return The sum of a and b.
+ */
+t_vector    *sum_vectors(t_vector *va, t_vector *vb);
+
+/**
+ * @brief Calculates the magnitude (length) of a given vector.
+ *
+ * This function computes the Euclidean norm of the vector pointed to by `vector`.
+ *
+ * @param v Pointer to a t_vector structure representing the vector.
+ * @return The magnitude (float) of the vector.
+ */
+float	  vector_magnitude(t_vector *v);
+
+/**
+ * @brief Creates a copy of the given vector.
+ *
+ * Allocates memory for a new t_vector and copies the contents of the input vector `v`
+ * into the newly allocated vector. The caller is responsible for freeing the returned vector.
+ *
+ * @param v Pointer to the t_vector to be copied.
+ * @return Pointer to the newly allocated copy of the vector, or NULL if allocation fails.
+ */
+t_vector	*copy_vector(t_vector *v);
+
+/**
+ * Rotates a 2D vector by a given angle in radians.
+ *
+ * @param v   Pointer to the vector to be rotated. The vector is modified in place.
+ * @param rad Angle in radians by which to rotate the vector.
+ */
+void		rotate_vector(t_vector *v, float rad);
 
 // utils
 void		destroy_game(t_game *game);

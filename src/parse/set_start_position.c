@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_start_position.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:53:48 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/09 17:51:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 12:55:37 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,34 @@
 
 static void	set_north(t_player *player)
 {
-	player->dir_player->x = 0;
-	player->dir_player->y = -1;
-	player->cam_player->x = 0.66;
-	player->cam_player->y = 0;
+	player->dir->x = 0;
+	player->dir->y = -1;
+	player->plane->x = 0.66;
+	player->plane->y = 0;
 }
 
 static void	set_south(t_player *player)
 {
-	player->dir_player->x = 0;
-	player->dir_player->y = 1;
-	player->cam_player->x = -0.66;
-	player->cam_player->y = 0;
+	player->dir->x = 0;
+	player->dir->y = 1;
+	player->plane->x = -0.66;
+	player->plane->y = 0;
 }
 
 static void	set_west(t_player *player)
 {
-	player->dir_player->x = -1;
-	player->dir_player->y = 0;
-	player->cam_player->x = 0;
-	player->cam_player->y = 0.66;
+	player->dir->x = -1;
+	player->dir->y = 0;
+	player->plane->x = 0;
+	player->plane->y = 0.66;
 }
 
 static void	set_east(t_player *player)
 {
-	player->dir_player->x = 1;
-	player->dir_player->y = 0;
-	player->cam_player->x = 0;
-	player->cam_player->y = -0.66;
+	player->dir->x = 1;
+	player->dir->y = 0;
+	player->plane->x = 0;
+	player->plane->y = -0.66;
 }
 
 void	set_start_position(t_player *player, char pos)
