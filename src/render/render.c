@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/11 12:56:26 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:37:55 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	calculate_height(t_game *game)
 	game->ray->line_height = HEIGHT / perp_wall_dist;
 	game->ray->draw_start = HEIGHT / 2 - game->ray->line_height / 2;
 	game->ray->draw_end = HEIGHT / 2 + game->ray->line_height / 2;
-	
+
 	return ;
 }
 
@@ -67,7 +67,7 @@ static void	dda_exec(t_game *game)
 			dda_size_y += game->ray->delta_dist->y;
 			game->ray->hit_side = 1;
 		}
-		if (game->map->map[(int)game->ray->wall_map_pos->y][(int)game->ray->wall_map_pos->x] > '0')
+		if (game->map->map[(int)game->ray->wall_map_pos->y][(int)game->ray->wall_map_pos->x] == '1')
 			hit = true;
 	}
 }

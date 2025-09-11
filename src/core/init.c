@@ -3,19 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/11 13:12:19 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:36:13 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+// static void	load_textures(t_game *game)
+// {
+// 	game->texture->t_north = mlx_load_png(game->texture->north_path);
+// 	game->texture->t_south = mlx_load_png(game->texture->south_path);
+// 	game->texture->t_west = mlx_load_png(game->texture->west_path);
+// 	game->texture->t_east = mlx_load_png(game->texture->east_path);
+// 	if (!game->texture->t_north || !game->texture->t_south
+// 		|| !game->texture->t_west || !game->texture->t_east)
+// 		destroy_game(game);
+// }
+
 void	init_player(t_player *player)
 {
-	// TODO: Pegar posição do jogador a partir do mapa [player->pos]
-	// TODO: Pegar direção do jogador a partir do mapa [player->dir]
 	player->dir = ft_collect_mem(1, sizeof(t_vector));
 	player->plane = ft_collect_mem(1, sizeof(t_vector));
 	player->pos = ft_collect_mem(1, sizeof(t_vector));
@@ -34,6 +43,7 @@ void	init(t_game *game)
 	game->ray = ft_collect_mem(1, sizeof(t_ray));
 	game->mlx = mlx_init(WIDTH, HEIGHT, "Counter-Strike 3", false);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+	// load_textures(game);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	init_player(game->player);
 }
