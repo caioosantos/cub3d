@@ -33,13 +33,25 @@ static void	calculate_height(t_game *game)
 
 	perp_wall_dist = 0;
 	if(game->ray->hit_side == 0)
-		perp_wall_dist = (game->ray->wall_map_pos->x - game->player->pos->x + ((1 - game->ray->step->x) / 2)) / game->ray->dir->x;
+	{
+		if (game->ray->dir->x != 0)
+			perp_wall_dist = (game->ray->wall_map_pos->x - game->player->pos->x + ((1 - game->ray->step->x) / 2)) / game->ray->dir->x;
+	}
 	else
-		perp_wall_dist = (game->ray->wall_map_pos->y - game->player->pos->y + ((1 - game->ray->step->y) / 2)) / game->ray->dir->y;
-	game->ray->line_height = HEIGHT / perp_wall_dist;
+	{
+		if (game->ray->dir->y != 0)
+			perp_wall_dist = (game->ray->wall_map_pos->y - game->player->pos->y + ((1 - game->ray->step->y) / 2)) / game->ray->dir->y;
+	}
+	if (perp_wall_dist > 0)
+		game->ray->line_height = (int)(HEIGHT / perp_wall_dist);
+	else
+		game->ray->line_height = HEIGHT;
 	game->ray->draw_start = HEIGHT / 2 - game->ray->line_height / 2;
+	if (game->ray->draw_start < 0)
+		game->ray->draw_start = 0;
 	game->ray->draw_end = HEIGHT / 2 + game->ray->line_height / 2;
-
+	if (game->ray->draw_end >= HEIGHT)
+		game->ray->draw_end = HEIGHT - 1;
 	return ;
 }
 

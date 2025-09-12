@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:36:13 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/11 19:51:46 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ void	init_player(t_player *player)
 	player->pos = ft_collect_mem(1, sizeof(t_vector));
 	player->input = ft_collect_mem(1, sizeof(t_input));
 	player->velocity = ft_collect_mem(1, sizeof(t_vector));
+	player->strafe_velocity = ft_collect_mem(1, sizeof(t_vector));
 	player->move_speed = 5;
 	player->velocity->x = 0;
 	player->velocity->y = 0;
+	player->strafe_velocity->x = 0;
+	player->strafe_velocity->y = 0;
 	player->rot_speed = 0;
 }
 

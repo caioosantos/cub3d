@@ -41,6 +41,7 @@ void	get_player(t_game *game, char **map, int i, int j)
 	game->player->pos->y = i + 0.5;
 	game->player->player++;
 	set_start_position(game->player, map[i][j]);
+	map[i][j] = '0';
 }
 
 void	validate_player(t_game *game)

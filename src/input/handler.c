@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/09 21:33:30 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/11 21:28:13 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,56 @@
 
 static void	update_player_position(t_game *game)
 {
-	t_vector	move_step;
+	t_vector	total_velocity;
+	t_vector	new_pos;
+	t_vector	bias;
 
-	move_step.x = game->player->velocity->x * game->mlx->delta_time;
-	move_step.y = game->player->velocity->y * game->mlx->delta_time;
-	game->player->pos->x += move_step.x;
-	game->player->pos->y += move_step.y;
+	total_velocity.x = (game->player->velocity->x + game->player->strafe_velocity->x) * game->mlx->delta_time;
+	total_velocity.y = (game->player->velocity->y + game->player->strafe_velocity->y) * game->mlx->delta_time;
+	if (total_velocity.x >= 0)
+		bias.x = 0.2;
+	else
+		bias.x = -0.2;
+	if (total_velocity.y >= 0)
+		bias.y = 0.2;
+	else
+		bias.y = -0.2;
+	new_pos.x = game->player->pos->x + total_velocity.x;
+	new_pos.y = game->player->pos->y + total_velocity.y;
+	if (game->map->map[(int)(game->player->pos->y)][(int)(new_pos.x + bias.x)] == '0')
+	{
+		game->player->pos->x = new_pos.x;
+	}
+	if (game->map->map[(int)(new_pos.y + bias.y)][(int)(game->player->pos->x)] == '0')
+	{
+		game->player->pos->y = new_pos.y;
+	}
+}
+
+void	strafe_left(t_game *game)
+{
+	game->player->strafe_velocity->x = game->player->dir->x
+		* game->player->move_speed;
+	game->player->strafe_velocity->y = game->player->dir->y
+		* game->player->move_speed;
+	rotate_vector(game->player->strafe_velocity, (M_PI / 2) * -1);
+}
+
+void	strafe_right(t_game *game)
+{
+	game->player->strafe_velocity->x = game->player->dir->x
+		* game->player->move_speed;
+	game->player->strafe_velocity->y = game->player->dir->y
+		* game->player->move_speed;
+	rotate_vector(game->player->strafe_velocity, M_PI / 2);
 }
 
 static void	calculate_velocity(t_game *game)
 {
 	game->player->velocity->x = 0;
 	game->player->velocity->y = 0;
+	game->player->strafe_velocity->x = 0;
+	game->player->strafe_velocity->y = 0;
 	if (game->player->input->up)
 	{
 		printf("Going up\n");
@@ -41,6 +79,16 @@ static void	calculate_velocity(t_game *game)
 			* game->player->move_speed;
 		game->player->velocity->y -= game->player->dir->y
 			* game->player->move_speed;
+	}
+	if (game->player->input->left)
+	{
+		printf("Going left\n");
+		strafe_left(game);
+	}
+	if (game->player->input->right)
+	{
+		printf("Going right\n");
+		strafe_right(game);
 	}
 }
 
