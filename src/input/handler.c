@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/11 21:28:13 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:47:44 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	strafe_left(t_game *game)
 		* game->player->move_speed;
 	game->player->strafe_velocity->y = game->player->dir->y
 		* game->player->move_speed;
-	rotate_vector(game->player->strafe_velocity, (M_PI / 2) * -1);
+	if (game->player->start == 'N' || game->player->start == 'S')
+		rotate_vector(game->player->strafe_velocity, (M_PI / 2) * -1);
+	else
+		rotate_vector(game->player->strafe_velocity, M_PI / 2);
 }
 
 void	strafe_right(t_game *game)
@@ -55,7 +58,10 @@ void	strafe_right(t_game *game)
 		* game->player->move_speed;
 	game->player->strafe_velocity->y = game->player->dir->y
 		* game->player->move_speed;
-	rotate_vector(game->player->strafe_velocity, M_PI / 2);
+	if (game->player->start == 'N' || game->player->start == 'S')
+		rotate_vector(game->player->strafe_velocity, M_PI / 2);
+	else
+		rotate_vector(game->player->strafe_velocity, (M_PI / 2) * -1);
 }
 
 static void	calculate_velocity(t_game *game)
@@ -94,12 +100,18 @@ static void	calculate_velocity(t_game *game)
 
 void	rotate_left(t_game *game)
 {
-	game->player->rot_speed = M_PI * -1;
+	if (game->player->start == 'N' || game->player->start == 'S')
+		game->player->rot_speed = M_PI * -1;
+	else
+		game->player->rot_speed = M_PI;
 }
 
 void	rotate_right(t_game *game)
 {
-	game->player->rot_speed = M_PI;
+	if (game->player->start == 'N' || game->player->start == 'S')
+		game->player->rot_speed = M_PI;
+	else
+		game->player->rot_speed = M_PI * -1;
 }
 
 void	calculate_rotation(t_game *game)
