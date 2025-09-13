@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/11 19:51:14 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:16:12 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,24 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define M_PI 3.14159265358979323846
+
+# define EXTENSION "ERROR: Invalid extension"
+# define FILE "ERROR: Invalid file"
+# define TOO_MANY_ARGUMENTS "ERROR: Too many arguments"
+# define TOO_MANY_PLAYERS "ERROR: Too many players"
+# define MAP_NOT_CLOSED "ERROR: Map not closed"
+# define DUPLICATE_TEXTURE "ERROR: Duplicate texture"
+# define DUPLICATE_COLOR "ERROR: Duplicate color"
+# define INVALID_TEXTURE_PATH "ERROR: Invalid texture path"
+# define INVALID_COLOR_PATH "ERROR: Invalid color path"
+# define INVALID_MAP "ERROR: Invalid map"
+# define INVALID_COLOR "ERROR: Invalid rgb color"
+# define INVALID_TEXTURE "ERROR: Invalid texture"
+# define INVALID_PLAYER "ERROR: Invalid player"
+# define INVALID_CHAR "ERROR: Invalid character"
+# define INVALID_START_POSITION "ERROR: Invalid player starting position"
+
+
 
 typedef struct s_vector
 {
@@ -135,7 +153,7 @@ int			only_spaces(char *content);
 int			contains_any_char(char *str, char *chars);
 int			count_map(t_game *game, char **map, int i);
 
-void		validade_colors(t_game *game);
+void		validate_colors(t_game *game);
 void		validate_map(t_game *game, char **map);
 void		get_player(t_game *game, char **map, int i, int j);
 void		validate_player(t_game *game);
@@ -200,6 +218,7 @@ t_vector	*copy_vector(t_vector *v);
 void		rotate_vector(t_vector *v, float rad);
 
 // utils
-void		destroy_game(t_game *game);
+void		print_error(char *msg);
+void		destroy_game(t_game *game, char *msg);
 
 #endif

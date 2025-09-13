@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:20:44 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/06 13:08:42 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/12 18:48:10 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game->mlx, &input_hook, game);
 	mlx_loop(game->mlx);
 	if (game->mlx)
-		destroy_game(game);
+		destroy_game(game, NULL);
 	return (0);
 }

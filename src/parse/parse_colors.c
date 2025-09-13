@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 17:37:31 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/08 20:54:56 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:16:35 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ static int	is_valid_colors(char *color)
 		return (0);
 	if (count_rgb_components(colors) != 3)
 	{
-		printf("ERROR: quantidade inválida de componentes RGB!\n");
+		print_error(INVALID_COLOR);
 		ft_free_matrix(colors);
 		return (0);
 	}
 	if (!valid_rgb_numbers(colors))
 	{
-		printf("ERROR: valor do rgb incorreto!\n");
+		print_error(INVALID_COLOR);
 		ft_free_matrix(colors);
 		return (0);
 	}
@@ -82,21 +82,12 @@ static int	is_valid_colors(char *color)
 	return (1);
 }
 
-void	validade_colors(t_game *game)
+void	validate_colors(t_game *game)
 {
 	if (!game->texture->ceiling_color || !game->texture->floor_color)
-	{
-		printf("ERROR: cores não encontradas!\n");
-		exit(EXIT_FAILURE);
-	}
+		destroy_game(game, INVALID_COLOR_PATH);
 	if (!is_valid_colors(game->texture->ceiling_color))
-	{
-		printf("ERROR: rbg do céu invalido\n");
-		exit(EXIT_FAILURE);
-	}
+		destroy_game(game, INVALID_COLOR);
 	if (!is_valid_colors(game->texture->floor_color))
-	{
-		printf("ERROR: rbg do chão invalido\n");
-		exit(EXIT_FAILURE);
-	}
+		destroy_game(game, INVALID_COLOR);
 }

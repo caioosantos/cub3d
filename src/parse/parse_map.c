@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:05:36 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/08 17:32:32 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:21:01 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	get_map(t_game *game, char **map, int *i)
 	len = count_map(game, map, *i);
 	game->map->map = ft_collect_mem(len + 1, sizeof(char *));
 	if (!game->map->map)
-		exit(EXIT_FAILURE);
+		return ;
 	j = 0;
 	map_started = 0;
 	map_ended = 0;
@@ -49,10 +49,7 @@ void	get_map(t_game *game, char **map, int *i)
 		else if (map_started && only_spaces(map[*i]))
 			map_ended = 1;
 		if (map_ended && contains_any_char(map[*i], "01NSWE"))
-		{
-			printf("ERROR: mapa fragmentado!\n");
-			exit(EXIT_FAILURE);
-		}
+			destroy_game(game, INVALID_MAP);
 		game->map->map[j++] = ft_strdup(map[*i]);
 		(*i)++;
 	}
@@ -85,10 +82,7 @@ void	validate_map(t_game *game, char **map)
 	int	j;
 
 	if (!map || !*map)
-	{
-		printf("ERROR: Não foi possível encontrar o mapa!\n");
-		exit(EXIT_FAILURE);
-	}
+		destroy_game(game, INVALID_MAP);
 	i = 0;
 	while (map[i])
 	{
@@ -96,16 +90,10 @@ void	validate_map(t_game *game, char **map)
 		while (map[i][j])
 		{
 			if (!ft_strchr(" 01NSWE", map[i][j]))
-			{
-				printf("ERROR: %d\n", map[i][j]);
-				exit(EXIT_FAILURE);
-			}
+				destroy_game(game, INVALID_MAP);
 			if (map[i][j] == '0')
 				if (!valid_zero(map, i, j))
-				{
-					printf("ERROR: '0' em posição inválida no mapa!\n");
-					exit(EXIT_FAILURE);
-				}
+					destroy_game(game, MAP_NOT_CLOSED);
 			if (ft_strchr("NSWE", map[i][j]))
 				get_player(game, map, i, j);
 			j++;
