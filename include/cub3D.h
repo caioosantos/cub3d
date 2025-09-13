@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 18:11:09 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:29:06 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define INVALID_PLAYER "ERROR: Invalid player"
 # define INVALID_CHAR "ERROR: Invalid character"
 # define INVALID_START_POSITION "ERROR: Invalid player starting position"
+# define ERR_TEXTURE_LOAD "ERROR: Failed to load texture"
 
 
 

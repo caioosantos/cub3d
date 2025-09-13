@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/13 17:48:26 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:40:32 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,11 +179,23 @@ static void	draw_background(t_game *game)
 	}
 }
 
+static void	load_textures(t_game *game)
+{
+	game->texture->t_north = mlx_load_png(game->texture->north_path);
+	game->texture->t_south = mlx_load_png(game->texture->south_path);
+	game->texture->t_west = mlx_load_png(game->texture->west_path);
+	game->texture->t_east = mlx_load_png(game->texture->east_path);
+	if (!game->texture->t_north || !game->texture->t_south
+		|| !game->texture->t_west || !game->texture->t_east)
+		destroy_game(game, ERR_TEXTURE_LOAD);
+}
+
 void	render(void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
+	load_textures(game);
 	draw_background(game);
 	raycasting(game);
 }
