@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/11 21:28:13 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/13 17:53:36 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,8 @@ void	input_hook(void *param)
 		input->turn_right = true;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_SPACE))
 		input->shoot = true;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game->mlx);
 	calculate_velocity(game);
 	calculate_rotation(game);
 	update_player_position(game);

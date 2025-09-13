@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:20:44 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/12 18:48:10 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/13 15:27:46 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ int	main(int ac, char **av)
 {
 	t_game	*game;
 
-	(void)av;
 	if (ac != 2)
 	{
-		printf("ERROR: wrong number of arguments\n");
+		ft_putendl_fd(WRONG_ARGUMENTS, 2);
 		exit(EXIT_FAILURE);
 	}
 	game = ft_collect_mem(1, sizeof(t_game));

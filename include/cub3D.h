@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/12 21:16:12 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/13 14:32:12 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # define EXTENSION "ERROR: Invalid extension"
 # define FILE "ERROR: Invalid file"
+# define WRONG_ARGUMENTS "ERROR: Wrong number of arguments"
 # define TOO_MANY_ARGUMENTS "ERROR: Too many arguments"
 # define TOO_MANY_PLAYERS "ERROR: Too many players"
 # define MAP_NOT_CLOSED "ERROR: Map not closed"
