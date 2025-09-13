@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 14:32:12 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:11:09 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_ray
 	t_vector	*dir;
 	t_vector	*map_pos;
 	t_vector	*step;
-	t_vector	*delta_dist; // Dist between two x sides or two y sides
-	t_vector	*side_dist; // Dist between next x or y side
+	t_vector	*delta_dist;
+	t_vector	*side_dist;
 	t_vector	*wall_map_pos;
 	float		p_dist;
 	int			hit_side;
