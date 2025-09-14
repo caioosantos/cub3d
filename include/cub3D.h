@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 18:29:06 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/14 11:32:23 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,28 @@ typedef struct s_vector
 	float	y;
 }	t_vector;
 
+typedef struct s_wall
+{
+	t_vector		*pixel;
+	mlx_texture_t	*texture;
+}	t_wall;
+
 typedef struct s_ray
 {
-	t_vector	*camera_pixel;
-	t_vector	*dir;
-	t_vector	*map_pos;
-	t_vector	*step;
-	t_vector	*delta_dist;
-	t_vector	*side_dist;
-	t_vector	*wall_map_pos;
-	float		p_dist;
-	int			hit_side;
-	int			line_height;
-	int			draw_start;
-	int			draw_end;
+	t_vector		*camera_pixel;
+	t_vector		*dir;
+	t_vector		*map_pos;
+	t_vector		*step;
+	t_vector		*delta_dist;
+	t_vector		*side_dist;
+	t_vector		*wall_map_pos;
+	float			p_dist;
+	int				hit_side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	float			perp_wall_dist;
+	t_wall			*wall;
 }	t_ray;
 
 typedef struct s_input
@@ -93,14 +101,6 @@ typedef struct s_player
 	int			player;
 	t_vector	*strafe_velocity;
 }	t_player;
-
-typedef struct s_image
-{
-	mlx_image_t		*north;
-	mlx_image_t		*south;
-	mlx_image_t		*east;
-	mlx_image_t		*west;
-}	t_image;
 
 typedef struct s_texture
 {
@@ -134,7 +134,6 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	mlx_t		*mlx;
-	t_image		*image;
 	t_texture	*texture;
 	t_ray		*ray;
 	mlx_image_t	*img;
@@ -164,10 +163,10 @@ void		set_start_position(t_player *player, char pos);
 
 // input
 void		input_hook(void *param);
-void		check_input(t_game *game);
 
 // render
 void		render(void *param);
+void		load_textures(t_game *game);
 
 // math
 /*

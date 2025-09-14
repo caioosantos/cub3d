@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:20:44 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 15:27:46 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/14 10:57:47 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char **av)
 		return (0);
 	init(game);
 	parse(game, av[1]);
+	load_textures(game);
 	mlx_loop_hook(game->mlx, &render, game);
 	mlx_loop_hook(game->mlx, &input_hook, game);
 	mlx_loop(game->mlx);

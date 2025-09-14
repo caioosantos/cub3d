@@ -29,7 +29,7 @@ SRC =	$(addprefix $(SRC_DIR), main.c) \
 		$(addprefix $(INP_DIR), handler.c) \
 		$(addprefix $(MAT_DIR), vectors.c) \
 		$(addprefix $(PAR_DIR), parse.c parse_colors.c parse_texture.c parse_map.c parse_player.c parse_utils.c set_start_position.c) \
-		$(addprefix $(REN_DIR), render.c) \
+		$(addprefix $(REN_DIR), render.c texture.c) \
 		$(addprefix $(ULT_DIR), clean.c) \
 
 OBJS = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
