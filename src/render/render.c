@@ -6,13 +6,11 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/14 12:02:00 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/14 12:48:27 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-
 
 static void	calculate_texture_x(t_game *game)
 {
@@ -51,21 +49,23 @@ void	select_texture(t_game *game)
 	}
 }
 
+uint32_t	get_rgba(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
 static void	draw_line(t_game *game, int x)
 {
 	int			y;
 	int			tex_y;
 	float		step;
 	float		tex_pos;
-	uint32_t	color;
 	uint8_t		*pixel;
 
 	select_texture(game);
 	calculate_texture_x(game);
-
 	step = 1.0f * game->ray->wall->texture->height / game->ray->line_height;
 	tex_pos = (game->ray->draw_start - HEIGHT / 2 + game->ray->line_height / 2) * step;
-
 	y = game->ray->draw_start;
 	while (y < game->ray->draw_end)
 	{
@@ -76,9 +76,7 @@ static void	draw_line(t_game *game, int x)
 		pixel = &game->ray->wall->texture->pixels[(tex_y
 				* game->ray->wall->texture->width + game->ray->wall->pixel_x)
 			* game->ray->wall->texture->bytes_per_pixel];
-		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8)
-			| pixel[3];
-		mlx_put_pixel(game->img, x, y, color);
+		mlx_put_pixel(game->img, x, y, get_rgba(pixel[0], pixel[1], pixel[2], pixel[3]));
 		y++;
 	}
 }
