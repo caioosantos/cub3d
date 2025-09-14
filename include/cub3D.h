@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/14 11:32:23 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/14 11:59:52 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef struct s_vector
 
 typedef struct s_wall
 {
-	t_vector		*pixel;
+	int				pixel_x;
+	int				pixel_y;
 	mlx_texture_t	*texture;
 }	t_wall;
 

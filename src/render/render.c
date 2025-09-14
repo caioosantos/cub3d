@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/14 11:53:22 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/14 12:02:00 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	draw_texture_pixel(t_game *game, int x)
 	if (tex_y >= (int)game->ray->wall->texture->height)
 		tex_y = game->ray->wall->texture->height - 1;
 	pixel = &game->ray->wall->texture->pixels[
-		(int)(tex_y * game->ray->wall->texture->width
-			+ game->ray->wall->pixel->x)
+		(tex_y * game->ray->wall->texture->width
+			+ game->ray->wall->pixel_x)
 		* game->ray->wall->texture->bytes_per_pixel];
 	color = (pixel[0] << 24) | (pixel[1] << 16)
 		| (pixel[2] << 8) | pixel[3];
@@ -48,12 +48,12 @@ static void	calculate_texture_x(t_game *game)
 		wall_x = game->player->pos->x + game->ray->perp_wall_dist
 			* game->ray->dir->x;
 	wall_x -= floor(wall_x);
-	game->ray->wall->pixel->x = (int)(wall_x
+	game->ray->wall->pixel_x = (int)(wall_x
 			* game->ray->wall->texture->width);
 	if ((game->ray->hit_side == 0 && game->ray->dir->x < 0)
 		|| (game->ray->hit_side == 1 && game->ray->dir->y < 0))
-		game->ray->wall->pixel->x = game->ray->wall->texture->width
-			- game->ray->wall->pixel->x - 1;
+		game->ray->wall->pixel_x = game->ray->wall->texture->width
+			- game->ray->wall->pixel_x - 1;
 }
 
 void	select_texture(t_game *game)
@@ -186,8 +186,6 @@ static void	ray_setup(t_game *game, int i, t_ray *ray)
 {
 	ray->map_pos = ft_collect_mem(1, sizeof(t_vector));
 	ray->wall = ft_collect_mem(1, sizeof(t_wall));
-	ray->wall->pixel = ft_collect_mem(1, sizeof(t_vector));
-	ray->wall->texture = ft_collect_mem(1, sizeof(mlx_texture_t));
 	game->player->plane_multi = 2 * ((float)i / (float)WIDTH) - 1;
 	ray->camera_pixel = multiply_vector(game->player->plane, game->player->plane_multi);
 	ray->dir = sum_vectors(game->player->dir, ray->camera_pixel);
