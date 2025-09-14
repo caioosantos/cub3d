@@ -12,30 +12,7 @@
 
 #include "../../include/cub3D.h"
 
-void	draw_texture_pixel(t_game *game, int x)
-{
-	int			actual_y;
-	int			tex_y;
-	uint32_t	color;
-	uint8_t		*pixel;
-	float		step;
 
-	actual_y = game->ray->draw_start;
-	step = (float)game->ray->wall->texture->height
-		/ game->ray->line_height;
-	tex_y = (int)(actual_y * step);
-	if (tex_y < 0)
-		tex_y = 0;
-	if (tex_y >= (int)game->ray->wall->texture->height)
-		tex_y = game->ray->wall->texture->height - 1;
-	pixel = &game->ray->wall->texture->pixels[
-		(tex_y * game->ray->wall->texture->width
-			+ game->ray->wall->pixel_x)
-		* game->ray->wall->texture->bytes_per_pixel];
-	color = (pixel[0] << 24) | (pixel[1] << 16)
-		| (pixel[2] << 8) | pixel[3];
-	mlx_put_pixel(game->img, x, game->ray->draw_start, color);
-}
 
 static void	calculate_texture_x(t_game *game)
 {
@@ -68,27 +45,41 @@ void	select_texture(t_game *game)
 	else
 	{
 		if (game->ray->dir->y > 0)
-			game->ray->wall->texture = game->texture->t_north;
-		else
 			game->ray->wall->texture = game->texture->t_south;
+		else
+			game->ray->wall->texture = game->texture->t_north;
 	}
 }
 
 static void	draw_line(t_game *game, int x)
 {
-	// int32_t	color;
+	int			y;
+	int			tex_y;
+	float		step;
+	float		tex_pos;
+	uint32_t	color;
+	uint8_t		*pixel;
 
 	select_texture(game);
 	calculate_texture_x(game);
-	// if (game->ray->hit_side)
-	// 	color = 0xFF0000FF; // red
-	// else
-	// 	color = 0x800000FF; // dark red
-	while (game->ray->draw_start < game->ray->draw_end)
+
+	step = 1.0f * game->ray->wall->texture->height / game->ray->line_height;
+	tex_pos = (game->ray->draw_start - HEIGHT / 2 + game->ray->line_height / 2) * step;
+
+	y = game->ray->draw_start;
+	while (y < game->ray->draw_end)
 	{
-		draw_texture_pixel(game, x);
-		// mlx_put_pixel(game->img, x, game->ray->draw_start, color);
-		game->ray->draw_start++;
+		tex_y = (int)tex_pos;
+		if (tex_y >= (int)game->ray->wall->texture->height)
+			tex_y = game->ray->wall->texture->height - 1;
+		tex_pos += step;
+		pixel = &game->ray->wall->texture->pixels[(tex_y
+				* game->ray->wall->texture->width + game->ray->wall->pixel_x)
+			* game->ray->wall->texture->bytes_per_pixel];
+		color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8)
+			| pixel[3];
+		mlx_put_pixel(game->img, x, y, color);
+		y++;
 	}
 }
 
