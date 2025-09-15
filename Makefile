@@ -57,7 +57,7 @@ $(NAME): $(OBJS) $(MLX)
 	@printf "$(GREEN)$(NAME) compiled successfully!$(END)\n"
 
 debug: $(NAME)
-	valgrind ./$(NAME) maps/valide_maps/subject.cub
+	valgrind ./$(NAME) maps/valid_maps/mandatory.cub
 
 libft:
 	@printf "$(YELLOW)Compiling libft...$(END)\n"
@@ -84,6 +84,6 @@ valg:
 	@valgrind --leak-check=full \
 			--show-leak-kinds=all \
 			--suppressions=suppress_mlx_error.supp \
-			./$(NAME) maps/valide_maps/simple_map.cub
+			./$(NAME) maps/valid_maps/mandatory.cub
 
 .PHONY: all clean fclean valg re

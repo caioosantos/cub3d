@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 18:40:07 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/15 20:30:26 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	init_ray(t_ray *ray)
+{
+	ray->camera_pixel = ft_collect_mem(1, sizeof(t_vector));
+	ray->dir = ft_collect_mem(1, sizeof(t_vector));
+	ray->map_pos = ft_collect_mem(1, sizeof(t_vector));
+	ray->step = ft_collect_mem(1, sizeof(t_vector));
+	ray->delta_dist = ft_collect_mem(1, sizeof(t_vector));
+	ray->side_dist = ft_collect_mem(1, sizeof(t_vector));
+	ray->wall_map_pos = ft_collect_mem(1, sizeof(t_vector));
+	ray->wall = ft_collect_mem(1, sizeof(t_wall));
+	ray->p_dist = 0;
+	ray->hit_side = 0;
+	ray->line_height = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
+	ray->perp_wall_dist = 0;
+}
 
 void	init_player(t_player *player)
 {
@@ -37,4 +55,5 @@ void	init(t_game *game)
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	init_player(game->player);
+	init_ray(game->ray);
 }
