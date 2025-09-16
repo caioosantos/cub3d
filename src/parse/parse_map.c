@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:05:36 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/12 21:21:01 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/13 18:29:19 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ int	count_map(t_game *game, char **map, int i)
 {
 	int	count;
 
-	(void)game;
 	count = 0;
 	while (map[i])
 	{
 		if (ft_special_char(map[i]))
-			exit(EXIT_FAILURE);
+			destroy_game(game, INVALID_CHAR);
 		count++;
 		i++;
 	}

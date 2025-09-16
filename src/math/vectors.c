@@ -12,9 +12,9 @@
 
 #include "../../include/cub3D.h"
 
-t_vector    *multiply_vector(t_vector *v, float multi)
+t_vector	*multiply_vector(t_vector *v, float multi)
 {
-	t_vector    *res;
+	t_vector	*res;
 
 	res = ft_collect_mem(1, sizeof(t_vector));
 	res->x = v->x * multi;
@@ -22,9 +22,9 @@ t_vector    *multiply_vector(t_vector *v, float multi)
 	return (res);
 }
 
-t_vector    *sum_vectors(t_vector *va, t_vector *vb)
+t_vector	*sum_vectors(t_vector *va, t_vector *vb)
 {
-	t_vector    *res;
+	t_vector	*res;
 
 	res = ft_collect_mem(1, sizeof(t_vector));
 	res->x = va->x + vb->x;
@@ -41,7 +41,7 @@ void	rotate_vector(t_vector *v, float rad)
 	v->y = old_x * sin(rad) + v->y * cos(rad);
 }
 
-float	  vector_magnitude(t_vector *v)
+float	vector_magnitude(t_vector *v)
 {
 	return (sqrt((v->x * v->x) + (v->y * v->y)));
 }

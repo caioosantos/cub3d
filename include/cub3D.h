@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/14 11:59:52 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/15 20:58:34 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@
 # define INVALID_CHAR "ERROR: Invalid character"
 # define INVALID_START_POSITION "ERROR: Invalid player starting position"
 # define ERR_TEXTURE_LOAD "ERROR: Failed to load texture"
-
-
 
 typedef struct s_vector
 {
@@ -87,7 +85,6 @@ typedef struct s_input
 	bool	shoot;
 }	t_input;
 
-
 typedef struct s_player
 {
 	char		start;
@@ -115,6 +112,8 @@ typedef struct s_texture
 	char			*west_path;
 	char			*floor_color;
 	char			*ceiling_color;
+	uint32_t		ceiling_hex;
+	uint32_t		floor_hex;
 	int				north;
 	int				south;
 	int				east;
@@ -164,10 +163,22 @@ void		set_start_position(t_player *player, char pos);
 
 // input
 void		input_hook(void *param);
+void		rotate_left(t_game *game);
+void		rotate_right(t_game *game);
+void		strafe_left(t_game *game);
+void		strafe_right(t_game *game);
+void		reset_inputs(t_input *input);
 
 // render
 void		render(void *param);
+void		dda_setup(t_game *game, t_ray *ray);
+void		dda_exec(t_game *game);
+void		calculate_height(t_game *game);
+void		calculate_texture_x(t_game *game);
+void		select_texture(t_game *game);
+uint32_t	get_rgba(int r, int g, int b, int a);
 void		load_textures(t_game *game);
+void		load_colors(t_game *game);
 
 // math
 /*
@@ -179,7 +190,7 @@ void		load_textures(t_game *game);
  * @param multi Scalar value to multiply the vector by.
  * @return Pointer to a new vector containing the result.
  */
-t_vector    *multiply_vector(t_vector *v, float multi);
+t_vector	*multiply_vector(t_vector *v, float multi);
 
 /**
  * Calculates the sum of two integers.
@@ -188,33 +199,38 @@ t_vector    *multiply_vector(t_vector *v, float multi);
  * @param b The second integer to add.
  * @return The sum of a and b.
  */
-t_vector    *sum_vectors(t_vector *va, t_vector *vb);
+t_vector	*sum_vectors(t_vector *va, t_vector *vb);
 
 /**
  * @brief Calculates the magnitude (length) of a given vector.
  *
- * This function computes the Euclidean norm of the vector pointed to by `vector`.
+ * This function computes the Euclidean norm of the vector
+ * pointed to by `vector`.
  *
  * @param v Pointer to a t_vector structure representing the vector.
  * @return The magnitude (float) of the vector.
  */
-float	  vector_magnitude(t_vector *v);
+float		vector_magnitude(t_vector *v);
 
 /**
  * @brief Creates a copy of the given vector.
  *
- * Allocates memory for a new t_vector and copies the contents of the input vector `v`
- * into the newly allocated vector. The caller is responsible for freeing the returned vector.
+ * Allocates memory for a new t_vector and copies the contents
+ * of the input vector `v`
+ * into the newly allocated vector. The caller is responsible
+ * for freeing the returned vector.
  *
  * @param v Pointer to the t_vector to be copied.
- * @return Pointer to the newly allocated copy of the vector, or NULL if allocation fails.
+ * @return Pointer to the newly allocated copy of the vector,
+ * or NULL if allocation fails.
  */
 t_vector	*copy_vector(t_vector *v);
 
 /**
  * Rotates a 2D vector by a given angle in radians.
  *
- * @param v   Pointer to the vector to be rotated. The vector is modified in place.
+ * @param v   Pointer to the vector to be rotated.
+ * The vector is modified in place.
  * @param rad Angle in radians by which to rotate the vector.
  */
 void		rotate_vector(t_vector *v, float rad);
