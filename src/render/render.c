@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/15 20:40:16 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 21:48:10 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static void	draw_line(t_game *game, int x)
 
 static void	ray_setup(t_game *game, int i, t_ray *ray)
 {
-	ray->map_pos = ft_collect_mem(1, sizeof(t_vector));
-	ray->wall = ft_collect_mem(1, sizeof(t_wall));
 	game->player->plane_multi = 2 * ((float)i / (float)WIDTH) - 1;
 	ray->camera_pixel = multiply_vector(game->player->plane, \
 		game->player->plane_multi);

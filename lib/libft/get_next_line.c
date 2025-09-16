@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:50:36 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/08/28 14:20:31 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 21:38:46 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer =  ft_collect_mem(BUFFER_SIZE + 1, sizeof(char));
+	buffer = ft_collect_mem(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (NULL);
 	line = get_line(fd, buffer, tail);

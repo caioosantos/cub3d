@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:31:54 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/15 20:28:28 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 21:47:35 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void	dda_calculate_dir(t_game *game, t_ray *ray)
 
 void	dda_setup(t_game *game, t_ray *ray)
 {
-	ray->delta_dist = ft_collect_mem(1, sizeof(t_vector));
-	ray->side_dist = ft_collect_mem(1, sizeof(t_vector));
-	ray->step = ft_collect_mem(1, sizeof(t_vector));
 	if (ray->dir->x == 0)
 		ray->delta_dist->x = 1e30;
 	else
