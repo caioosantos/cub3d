@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:21:45 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/15 20:58:34 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 01:39:32 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+
+# ifndef BONUS
+#  define BONUS 1
+# endif
 
 # define WIDTH 1280
 # define HEIGHT 720
@@ -168,6 +172,7 @@ void		rotate_right(t_game *game);
 void		strafe_left(t_game *game);
 void		strafe_right(t_game *game);
 void		reset_inputs(t_input *input);
+void		mouse_hook(double xpos, double ypos, void *param);
 
 // render
 void		render(void *param);

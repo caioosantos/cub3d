@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 16:20:44 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/15 22:09:21 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/16 01:39:25 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int ac, char **av)
 	load_colors(game);
 	mlx_loop_hook(game->mlx, &render, game);
 	mlx_loop_hook(game->mlx, &input_hook, game);
+	if (BONUS)
+		mlx_cursor_hook(game->mlx, &mouse_hook, game);
 	mlx_loop(game->mlx);
 	if (game->mlx)
 		destroy_game(game, NULL);

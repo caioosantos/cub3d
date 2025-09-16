@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 10:58:07 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/15 20:17:21 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/15 23:58:55 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ uint32_t	parse_rgb_colors(t_game *game, char *colors)
 	int		b;
 
 	if (!colors)
-		destroy_game(game, INVALID_CHAR);
+		destroy_game(game, INVALID_COLOR);
 	rgb_colors = ft_split(colors, ',');
 	if (!rgb_colors)
 		destroy_game(game, INVALID_COLOR);

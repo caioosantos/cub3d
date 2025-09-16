@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/15 20:56:31 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 01:39:28 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	mouse_hook(double xpos, double ypos, void *param)
+{
+	t_game	*game;
+	float	mouse_sensitivity;
+
+	(void)ypos;
+	game = (t_game *)param;
+	mouse_sensitivity = 0.003f;
+	if (xpos > WIDTH * 0.7)
+	{
+		game->player->rot_speed = mouse_sensitivity * (xpos - WIDTH * 0.7);
+		rotate_right(game);
+	}
+	else if (xpos < WIDTH * 0.3)
+	{
+		game->player->rot_speed = mouse_sensitivity * (WIDTH * 0.3 - xpos);
+		rotate_left(game);
+	}
+	else
+		game->player->rot_speed = 0;
+}
 
 static void	update_player_position(t_game *game)
 {
