@@ -6,7 +6,7 @@
 /*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 23:54:12 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/15 21:48:10 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/15 22:13:03 by gyasuhir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ static void	raycasting(t_game *game)
 		calculate_height(game);
 		draw_line(game, i);
 		i++;
+		untrack_pointer(game->ray->dir);
+		untrack_pointer(game->ray->camera_pixel);
+		untrack_pointer(game->ray->wall_map_pos);
 	}
 }
 
