@@ -24,6 +24,8 @@ PAR_DIR = src/parse/
 REN_DIR = src/render/
 ULT_DIR = src/utils/
 
+BONUS = 0
+
 SRC =	$(addprefix $(SRC_DIR), main.c) \
 		$(addprefix $(COR_DIR), init.c) \
 		$(addprefix $(INP_DIR), handler.c handler_utils.c) \
@@ -41,7 +43,7 @@ all: $(MLX) libft $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INC_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -D BONUS=$(BONUS) $(INC_DIR) -c $< -o $@
 
 $(MLX):
 	@printf "$(YELLOW)Compiling MLX42...$(END)\n"
@@ -53,7 +55,7 @@ $(MLX):
 	fi
 
 $(NAME): $(OBJS) $(MLX)
-	@$(CC) $(CFLAGS) -no-pie $(OBJS) -L$(LIB_DIR) -lft $(MLX) -o $(NAME) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -D BONUS=$(BONUS) -no-pie $(OBJS) -L$(LIB_DIR) -lft $(MLX) -o $(NAME) $(MLX_FLAGS)
 	@printf "$(GREEN)$(NAME) compiled successfully!$(END)\n"
 
 debug: $(NAME)
@@ -66,6 +68,9 @@ libft:
 	else \
 		make -C $(LIB_DIR) $(PRINT_DIR) && printf "$(GREEN)Libft compiled successfully!$(END)\n"; \
 	fi
+
+bonus:
+	@make clean all BONUS=1 $(PRINT_DIR)
 
 clean:
 	@rm -rf $(OBJ_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 19:08:56 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/13 15:18:33 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:53:37 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	delete_texture(t_game *game)
 		mlx_delete_texture(game->texture->t_west);
 	if (game->texture->t_east)
 		mlx_delete_texture(game->texture->t_east);
+	if (BONUS && game->texture->t_door)
+		mlx_delete_texture(game->texture->t_door);
 }
 
 void	print_error(char *msg)

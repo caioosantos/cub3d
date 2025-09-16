@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/16 01:39:28 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:03:21 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,29 @@ void	mouse_hook(double xpos, double ypos, void *param)
 {
 	t_game	*game;
 	float	mouse_sensitivity;
+	static bool	first_mouse = true;
 
 	(void)ypos;
 	game = (t_game *)param;
 	mouse_sensitivity = 0.003f;
-	if (xpos > WIDTH * 0.7)
+	if (first_mouse)
 	{
-		game->player->rot_speed = mouse_sensitivity * (xpos - WIDTH * 0.7);
+		first_mouse = false;
+		return ;
+	}
+	if (xpos > WIDTH * 0.5)
+	{
+		game->player->rot_speed = mouse_sensitivity * (xpos - WIDTH * 0.5);
 		rotate_right(game);
 	}
-	else if (xpos < WIDTH * 0.3)
+	else if (xpos < WIDTH * 0.5)
 	{
-		game->player->rot_speed = mouse_sensitivity * (WIDTH * 0.3 - xpos);
+		game->player->rot_speed = mouse_sensitivity * (WIDTH * 0.5 - xpos);
 		rotate_left(game);
 	}
 	else
 		game->player->rot_speed = 0;
+	mlx_set_mouse_pos(game->mlx, WIDTH * 0.5, HEIGHT * 0.5);
 }
 
 static void	update_player_position(t_game *game)

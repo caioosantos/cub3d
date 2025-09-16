@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:31:54 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/15 21:47:35 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:47:16 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ void	dda_setup(t_game *game, t_ray *ray)
 
 void	dda_exec(t_game *game)
 {
-	bool		hit;
+	int		hit;
+	char	cell;
 
-	hit = false;
+	hit = 0;
 	game->ray->wall_map_pos = copy_vector(game->ray->map_pos);
-	while (hit == false)
+	while (hit == 0)
 	{
 		if (game->ray->side_dist->x < game->ray->side_dist->y)
 		{
@@ -73,8 +74,9 @@ void	dda_exec(t_game *game)
 			game->ray->side_dist->y += game->ray->delta_dist->y;
 			game->ray->hit_side = 1;
 		}
-		if (game->map->map[(int)game->ray->wall_map_pos->y] \
-			[(int)game->ray->wall_map_pos->x] == '1')
-			hit = true;
+		cell = game->map->map[(int)game->ray->wall_map_pos->y] \
+			[(int)game->ray->wall_map_pos->x];
+		if (cell == '1' || (BONUS && cell == 'D'))
+			hit = 1;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:35:17 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/09 15:11:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:43:10 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,16 @@ int	is_valid_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_strchr(" 01NSEW", line[i]))
-			return (0);
+		if (BONUS)
+		{
+			if (!ft_strchr(" 01NSEWD", line[i]))
+				return (0);
+		}
+		else
+		{
+			if (!ft_strchr(" 01NSEW", line[i]))
+				return (0);
+		}
 		i++;
 	}
 	return (1);

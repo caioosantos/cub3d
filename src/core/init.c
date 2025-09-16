@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gyasuhir <gyasuhir@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/15 21:50:42 by gyasuhir         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:02:50 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,9 @@ void	init(t_game *game)
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	init_player(game->player);
 	init_ray(game->ray);
+	if (BONUS)
+	{
+		mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
+		mlx_set_mouse_pos(game->mlx, WIDTH * 0.5, HEIGHT * 0.5);
+	}
 }

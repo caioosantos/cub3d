@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 10:58:07 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/15 23:58:55 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:53:58 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 void	select_texture(t_game *game)
 {
+	char	wall_door;
+
+	wall_door = game->map->map[(int)game->ray->wall_map_pos->y] \
+		[(int)game->ray->wall_map_pos->x];
+	if (wall_door == 'D')
+	{
+		game->ray->wall->texture = game->texture->t_door;
+		return ;
+	}
 	if (game->ray->hit_side == 0)
 	{
 		if (game->ray->dir->x > 0)
@@ -84,6 +93,12 @@ void	load_textures(t_game *game)
 	game->texture->t_south = mlx_load_png(game->texture->south_path);
 	game->texture->t_west = mlx_load_png(game->texture->west_path);
 	game->texture->t_east = mlx_load_png(game->texture->east_path);
+	if (BONUS)
+	{
+		game->texture->t_door = mlx_load_png("assets/map/porta.png");
+		if (!game->texture->t_door)
+			destroy_game(game, ERR_TEXTURE_LOAD);
+	}
 	if (!game->texture->t_north || !game->texture->t_south
 		|| !game->texture->t_west || !game->texture->t_east)
 		destroy_game(game, ERR_TEXTURE_LOAD);
