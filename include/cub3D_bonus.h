@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 18:52:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/16 20:43:16 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:27:56 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ void		rotate_right(t_game *game);
 void		strafe_left(t_game *game);
 void		strafe_right(t_game *game);
 void		reset_inputs(t_input *input);
+void		handler_input(t_game *game, t_input *input);
 void		mouse_hook(double xpos, double ypos, void *param);
 
 // render

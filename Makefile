@@ -26,15 +26,15 @@ PAR_DIR = src/parse/
 REN_DIR = src/render/
 ULT_DIR = src/utils/
 
-OBJ_DIR_BONUS = objs/bonus/
-SRC_DIR_BONUS = src/bonus/
-COR_DIR_BONUS = src/bonus/core_bonus/
-DOO_DIR_BONUS = src/bonus/door_bonus/
-INP_DIR_BONUS = src/bonus/input_bonus/
-MAT_DIR_BONUS = src/bonus/math_bonus/
-PAR_DIR_BONUS = src/bonus/parse_bonus/
-REN_DIR_BONUS = src/bonus/render_bonus/
-ULT_DIR_BONUS = src/bonus/utils_bonus/
+OBJ_DIR_BONUS = objs/src_bonus/
+SRC_DIR_BONUS = src_bonus/
+COR_DIR_BONUS = src_bonus/core_bonus/
+DOO_DIR_BONUS = src_bonus/door_bonus/
+INP_DIR_BONUS = src_bonus/input_bonus/
+MAT_DIR_BONUS = src_bonus/math_bonus/
+PAR_DIR_BONUS = src_bonus/parse_bonus/
+REN_DIR_BONUS = src_bonus/render_bonus/
+ULT_DIR_BONUS = src_bonus/utils_bonus/
 
 SRC =	$(addprefix $(SRC_DIR), main.c) \
 		$(addprefix $(COR_DIR), init.c) \
@@ -50,7 +50,7 @@ OBJS = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 SRC_BONUS = $(addprefix $(SRC_DIR_BONUS), main_bonus.c) \
 			$(addprefix $(COR_DIR_BONUS), init_bonus.c) \
 			$(addprefix $(DOO_DIR_BONUS), door_bonus.c) \
-			$(addprefix $(INP_DIR_BONUS), handler_bonus.c handler_utils_bonus.c) \
+			$(addprefix $(INP_DIR_BONUS), handler_bonus.c handler_utils_bonus.c input_bonus.c) \
 			$(addprefix $(MAT_DIR_BONUS), vectors_bonus.c) \
 			$(addprefix $(PAR_DIR_BONUS), parse_bonus.c parse_colors_bonus.c parse_texture_bonus.c parse_map_bonus.c parse_player_bonus.c parse_utils_bonus.c set_start_position_bonus.c) \
 			$(addprefix $(REN_DIR_BONUS), render_bonus.c dda_bonus.c render_utils_bonus.c texture_bonus.c) \

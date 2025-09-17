@@ -6,7 +6,7 @@
 /*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 18:42:27 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/16 19:10:26 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/17 18:28:50 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	init(t_game *game)
 	init_player(game->player);
 	init_ray(game->ray);
 	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
-		mlx_set_mouse_pos(game->mlx, WIDTH * 0.5, HEIGHT * 0.5);
+	mlx_set_mouse_pos(game->mlx, WIDTH * 0.5, HEIGHT * 0.5);
 }
