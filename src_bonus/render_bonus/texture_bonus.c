@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 10:58:07 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/16 19:27:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/19 01:50:37 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ void	load_textures(t_game *game)
 	game->texture->t_south = mlx_load_png(game->texture->south_path);
 	game->texture->t_west = mlx_load_png(game->texture->west_path);
 	game->texture->t_east = mlx_load_png(game->texture->east_path);
-	game->texture->t_door = mlx_load_png("assets/map/door.png");
+	game->texture->t_door = mlx_load_png("assets/map/door_0.png");
+	game->texture->t_door_open = mlx_load_png("assets/map/door_1.png");
 	if (!game->texture->t_north || !game->texture->t_south
 		|| !game->texture->t_west || !game->texture->t_east
-		|| !game->texture->t_door)
+		|| !game->texture->t_door || !game->texture->t_door_open)
 		destroy_game(game, ERR_TEXTURE_LOAD);
 }

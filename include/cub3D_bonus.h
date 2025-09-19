@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 18:52:15 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/17 18:27:56 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/19 02:00:01 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_texture
 	mlx_texture_t	*t_east;
 	mlx_texture_t	*t_west;
 	mlx_texture_t	*t_door;
+	mlx_texture_t	*t_door_open;
 	char			*north_path;
 	char			*south_path;
 	char			*east_path;
@@ -174,6 +175,7 @@ void		strafe_left(t_game *game);
 void		strafe_right(t_game *game);
 void		reset_inputs(t_input *input);
 void		handler_input(t_game *game, t_input *input);
+void		handle_door(t_game *game);
 void		mouse_hook(double xpos, double ypos, void *param);
 
 // render

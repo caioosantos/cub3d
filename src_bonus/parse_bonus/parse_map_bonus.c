@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 11:05:36 by cbrito-s          #+#    #+#             */
-/*   Updated: 2025/09/16 20:27:27 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/19 01:48:40 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	validate_map(t_game *game, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (!ft_strchr(" 01NSWED", map[i][j]))
+			if (!ft_strchr(" 01NSWED0", map[i][j]))
 				destroy_game(game, INVALID_MAP);
 			if (map[i][j] == '0')
 				if (!valid_zero(map, i, j))

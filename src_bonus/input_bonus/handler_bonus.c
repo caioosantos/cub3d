@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbrito-s <cbrito-s>                        +#+  +:+       +#+        */
+/*   By: cbrito-s <cbrito-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/06 11:47:57 by gyasuhir          #+#    #+#             */
-/*   Updated: 2025/09/17 18:29:48 by cbrito-s         ###   ########.fr       */
+/*   Updated: 2025/09/19 01:51:49 by cbrito-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,4 +120,9 @@ void	input_hook(void *param)
 	calculate_velocity(game);
 	calculate_rotation(game);
 	update_player_position(game);
+	if (input->interact)
+	{
+		handle_door(game);
+		input->interact = false;
+	}
 }
